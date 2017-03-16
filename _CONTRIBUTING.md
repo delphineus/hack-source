@@ -33,7 +33,7 @@
 Use github’s interface to make a fork of the repo, then add that repo as an upstream remote:
 
 ```
-git remote add upstream https://github.com/hackreactor-labs/<NAME_OF_REPO>.git
+git remote add upstream https://github.com/reactorcore/<NAME_OF_REPO>.git
 ```
 
 ### Cut a namespaced feature branch from master
@@ -86,7 +86,7 @@ your code merged into the main repo. Step 1 is to rebase upstream
 changes to the master branch into yours by running this command
 from your branch:
 
-```
+```bash
 git pull --rebase upstream master
 ```
 
@@ -103,9 +103,12 @@ and picking the versions you want. Be aware that these changes will show
 up in your pull request, so try and incorporate upstream changes as much
 as possible.
 
+You pick a file by `git add`ing it - you do not make commits during a
+rebase.
+
 Once you are done fixing conflicts for a specific commit, run:
 
-```
+```bash
 git rebase --continue
 ```
 
@@ -165,13 +168,13 @@ no problem getting your changes merged in.
 
 
 <!-- Links -->
-[style guide]: https://github.com/hackreactor-labs/style-guide
-[n-queens]: https://github.com/hackreactor-labs/n-queens
-[Underbar]: https://github.com/hackreactor-labs/underbar
+[style guide]: https://github.com/reactorcore/style-guide
+[n-queens]: https://github.com/reactorcore/n-queens
+[Underbar]: https://github.com/reactorcore/underbar
 [curriculum workflow diagram]: http://i.imgur.com/p0e4tQK.png
 [cons of merge]: https://f.cloud.github.com/assets/1577682/1458274/1391ac28-435e-11e3-88b6-69c85029c978.png
-[Bookstrap]: https://github.com/hackreactor/bookstrap
-[Taser]: https://github.com/hackreactor/bookstrap
+[Bookstrap]: https://github.com/reactorcore/bookstrap
+[Taser]: https://github.com/reactorcore/bookstrap
 [tools workflow diagram]: http://i.imgur.com/kzlrDj7.png
 [Git Flow]: http://nvie.com/posts/a-successful-git-branching-model/
 [GitHub Flow]: http://scottchacon.com/2011/08/31/github-flow.html
