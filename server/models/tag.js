@@ -6,8 +6,8 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Tag.belongsToMany(models.Resource, {through: models.ResourceTag});
-      }
-    }
+    title: DataTypes.STRING,
+    ResourceId: DataTypes.INTEGER
   });
   return Tag;
 };
