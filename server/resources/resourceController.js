@@ -1,4 +1,4 @@
-var Resurce = require('./resourceModel.js');
+var Resource = require('./resourceModel.js');
 
 module.exports = {
   allResources: function(req, res) {
@@ -21,6 +21,30 @@ module.exports = {
   },
 
   newResource: function(req, res) {
-    // some Resource method
+    // todo
+  },
+
+  byCategory: function(req, res) {
+    // todo
+  },
+
+  byTag: function(req, res) {
+    // todo
+  },
+
+  likes: function(req, res) {
+    // todo
+  },
+
+  allCategories: function(req, res) {
+    // todo
+  },
+
+  allTags: function(req, res) {
+    // todo
+  },
+
+  bookmarks: function(req, res) {
+    // todo
   }
 };
