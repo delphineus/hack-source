@@ -9,9 +9,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        User.hasMany(models.Resource);
-        User.hasMany(models.Like);
-        User.hasMany(models.Bookmark);
+        User.hasMany(model.Resource);
+        User.hasMany(model.like);
+        User.hasMany(model.bookmark);
       }
     }
   });

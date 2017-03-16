@@ -6,11 +6,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Like.belongsTo(models.Resource);
-        Like.belongsTo(models.User);
+        // associations can be defined here
       }
     }
   });
-
   return Like;
 };
