@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/')));
 app.use('/api', routes);
 
-app.get('/api/test', function(req, res) {
+app.get('/', function(req, res) {
   res.send('Hello, World!');
 });
 
