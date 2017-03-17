@@ -12,24 +12,8 @@ var authRoutes = require('./authRoutes');
 
 const port = process.env.PORT || 3000;
 
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.static(path.join(__dirname, '../client')));
-app.use('/api', routes);
-app.use('/auth', authRoutes);
-
-var ensureAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.json({token: null, user: null});
-};
-
-app.get('/logged-in', ensureAuthenticated, function(req, res) {
-  var token = jwt.encode(req.user, 'secret');
-  res.json({token: token, user: req.user});
+app.get('/api/test', function(req, res) {
+  res.send('Hello, World!');
 });
 
 app.listen(port, function() {
