@@ -1,24 +1,12 @@
-var Resource = require('../models').Resource;
-var User = require('../models').User;
-var Like = require('../models').Like;
-var Bookmark = require('../models').Bookmark;
-var Category = require('../models').Category;
-var Tag = require('../models').Tag;
+var Resource = require('./models').Resource;
 
 module.exports = {
   getResources: function(req, res) {
-    Resource.findAll({
-      include: [
-        { model: User },
-        { model: Like },
-        { model: Bookmark },
-        { model: Category },
-        { model: Tag }
-      ]
-    })
-    .then(function(resources) {
-      res.send(resources);
-    });
+    // promise version
+    Resource.findAll()
+      .then(function() {
+        res.send();
+      });
   },
 
   getOpenGraph: function(req, res) {
@@ -44,7 +32,7 @@ module.exports = {
   },
 
   postLikes: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getCategories: function(req, res) {
@@ -52,7 +40,7 @@ module.exports = {
   },
 
   getTags: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getBookmarks: function(req, res) {

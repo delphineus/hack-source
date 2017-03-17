@@ -1,19 +1,19 @@
-var User = require('../models').User;
+var User = require('./models').User;
 
 module.exports = {
   checkAuth: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   login: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   logout: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   signup: function(req, res) {
-    res.send('Im Working');
+    // todo
   }
-};
+}
