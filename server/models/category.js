@@ -11,7 +11,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Category.belongsTo(models.Resource);
+        // Category.belongsTo(models.Resource);
+        Category.belongsToMany(models.Resource, {through: models.ResourceCategory});
       }
     }
   };
