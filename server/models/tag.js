@@ -8,11 +8,10 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Tag.belongsTo(models.Resource);
       }
-    }, {
-      setterMethods: {
-        getTags: function() {
-          return this.getDataValue('title');
-        }
+    },
+    setterMethods: {
+      getTags: function() {
+        return this.getDataValue('title');
       }
     }
   });
