@@ -3,19 +3,19 @@ var userController = require('./controllers/userController.js');
 
 module.exports = function(app, express) {
   // resources
-  app.get('/api/resources', resourceController.getResources);
-  app.post('/api/resources', resourceController.postResource);
-  app.get('/api/resources/category', resourceController.getCategory);
-  app.get('/api/resources/tag', resourceController.getTag);
+  app.get('/resources', resourceController.getResources);
+  app.post('/resources', resourceController.postResource);
+  app.get('/resources/category', resourceController.getCategory);
+  app.get('/resources/tag', resourceController.getTag);
 
-  app.post('/api/likes', resourceController.postLikes);
-  app.get('/api/categories', resourceController.getCategories);
-  app.get('/api/tags', resourceController.getTags);
-  app.get('/api/user/bookmarks', resourceController.getBookmarks);
+  app.post('/likes', resourceController.postLikes);
+  app.get('/categories', resourceController.getCategories);
+  app.get('/tags', resourceController.getTags);
+  app.get('/user/bookmarks', resourceController.getBookmarks);
 
   // users
-  app.get('/api/users/', userController.checkAuth);
-  app.get('/api/users/login', userController.login);
-  app.get('/api/users/logout', userController.logout);
-  app.post('/api/users', userController.signup);
+  app.get('/users/', userController.checkAuth);
+  app.get('/users/login', userController.login);
+  app.get('/users/logout', userController.logout);
+  app.post('/users', userController.signup);
 };
