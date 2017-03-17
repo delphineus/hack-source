@@ -2,15 +2,13 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Bookmarks', [{
+    return queryInterface.bulkInsert('Bookmark', [{
       ResourceId: 1,
-      UserId: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      UserId: 1
     }], {});
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Bookmarks', null, {});
+    return queryInterface.bulkDelete('Bookmark', null, {});
   }
 };
