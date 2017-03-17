@@ -7,5 +7,7 @@ Resources:
 Custom Directive docs: https://docs.angularjs.org/guide/directive
 
 General idea/goals:
-  - onClick, update vote count in database
-  - If User has already voted for resource, cannot vote again
+  - onClick, toggle add/remove resource from Users bookmark list
+
+** IMPORTANT
+- Need functionality/capability to query for all bookmarked resources
