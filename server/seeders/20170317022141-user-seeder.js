@@ -2,18 +2,13 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Users', [{
-      githubId: '007',
+    return queryInterface.bulkInsert('User', [{
       username: 'dolphin',
-      displayName: 'Team Delphenius',
-      profileUrl: 'http://www.profileUrl.com',
-      avatarUrl: 'http://www.avatarUrl.com',
-      createdAt: new Date(),
-      updatedAt: new Date()
+      password: 'flyingFish'
     }], {});
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Users', null, {});
+    return queryInterface.bulkDelete('User', null, {});
   }
 };
