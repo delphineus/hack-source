@@ -12,11 +12,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      ResourceId: {
-        allowNull: false,
-        unique: true,
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
