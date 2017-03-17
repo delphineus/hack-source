@@ -1,4 +1,3 @@
-
 var Resource = require('../models').Resource;
 var User = require('../models').User;
 var Like = require('../models').Like;
@@ -35,7 +34,7 @@ module.exports = {
   },
 
   postLikes: function(req, res) {
-    // todo
+    Like.post();
   },
 
   getCategories: function(req, res) {
