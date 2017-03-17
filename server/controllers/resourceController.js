@@ -1,6 +1,6 @@
-var Resource = require('./models').Resource;
-var Like = require('./models').Like;
-var Tag = require('./models').Tag;
+var Resource = require('../models').Resource;
+var Like = require('../models').Like;
+var Tag = require('../models').Tag;
 
 module.exports = {
   getResources: function(req, res) {
