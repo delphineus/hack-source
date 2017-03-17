@@ -2,21 +2,21 @@ var resourceController = require('./controllers/resourceController.js');
 var userController = require('./controllers/userController.js');
 var router = require('express').Router();
 
-module.exports = function(app, express) {
-  // resources
-  app.get('/resources', resourceController.getResources);
-  app.post('/resources', resourceController.postResource);
-  app.get('/resources/category', resourceController.getCategory);
-  app.get('/resources/tag', resourceController.getTag);
+// resources
+router.get('/resources', resourceController.getResources);
+router.post('/resources', resourceController.postResource);
+router.get('/resources/category', resourceController.getCategory);
+router.get('/resources/tag', resourceController.getTag);
 
-  app.post('/likes', resourceController.postLikes);
-  app.get('/categories', resourceController.getCategories);
-  app.get('/tags', resourceController.getTags);
-  app.get('/user/bookmarks', resourceController.getBookmarks);
+router.post('/likes', resourceController.postLikes);
+router.get('/categories', resourceController.getCategories);
+router.get('/tags', resourceController.getTags);
+router.get('/user/bookmarks', resourceController.getBookmarks);
 
-  // users
-  app.get('/users/', userController.checkAuth);
-  app.get('/users/login', userController.login);
-  app.get('/users/logout', userController.logout);
-  app.post('/users', userController.signup);
-};
+// users
+router.get('/users/', userController.checkAuth);
+router.get('/users/login', userController.login);
+router.get('/users/logout', userController.logout);
+router.post('/users', userController.signup);
+
+module.exports = router;
