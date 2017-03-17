@@ -1,4 +1,4 @@
-var Resource = require('./models').Resource;
+var Resource = require('../models').Resource;
 
 module.exports = {
   getResources: function(req, res) {
