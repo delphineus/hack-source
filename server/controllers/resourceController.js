@@ -34,7 +34,11 @@ module.exports = {
   },
 
   postLikes: function(req, res) {
-    Like.post();
+    Like.create({
+      // this will need to get pulled from the session once it's setup
+      ResourceId: req.body.resourceId,
+      UserId: req.body.userId
+    });
   },
 
   getCategories: function(req, res) {
@@ -42,13 +46,9 @@ module.exports = {
   },
 
   getTags: function(req, res) {
-    Tag.getTags()
-      .then(function(err, tags) {
-        if (err) {
-          console.error('Error fetching tags: ', err);
-        } else {
-          res.send(resources);
-        }
+    Tag.findAll().
+      then(function(tags) {
+        res.send(tags);
       });
   },
 
