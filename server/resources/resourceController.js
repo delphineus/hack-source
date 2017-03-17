@@ -1,50 +1,39 @@
-var Resource = require('./resourceModel.js');
+var Resource = require('./models').Resource;
 
 module.exports = {
-  allResources: function(req, res) {
+  getResources: function(req, res) {
     // promise version
-    // resource.findAll()
-      // .then(function() {
-      //   res.send();
-      // });
-
-    // no promise (what I think we'll be doing)
-    Resource.findAll(function(err, resources)) {
-      if (err) {
-        console.error('Error finding resources:', err);
-      } else {
-        // log for testing
-        console.log('Sending resources');
-        res.send(resources);
-      }
-    };
+    Resource.findAll()
+      .then(function() {
+        res.send();
+      });
   },
 
-  newResource: function(req, res) {
+  postResource: function(req, res) {
     // todo
   },
 
-  byCategory: function(req, res) {
+  getCategory: function(req, res) {
     // todo
   },
 
-  byTag: function(req, res) {
+  getTag: function(req, res) {
     // todo
   },
 
-  likes: function(req, res) {
+  postLikes: function(req, res) {
     // todo
   },
 
-  allCategories: function(req, res) {
+  getCategories: function(req, res) {
     // todo
   },
 
-  allTags: function(req, res) {
+  getTags: function(req, res) {
     // todo
   },
 
-  bookmarks: function(req, res) {
+  getBookmarks: function(req, res) {
     // todo
   }
 };

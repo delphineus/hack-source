@@ -1,4 +1,4 @@
-var User = require('./userModel.js');
+var User = require('./models').User;
 
 module.exports = {
   checkAuth: function(req, res) {
@@ -6,6 +6,10 @@ module.exports = {
   },
 
   login: function(req, res) {
+    // todo
+  },
+
+  logout: function(req, res) {
     // todo
   },
 
