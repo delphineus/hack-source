@@ -1,3 +1,4 @@
+
 var Resource = require('../models').Resource;
 var User = require('../models').User;
 var Like = require('../models').Like;
@@ -22,30 +23,30 @@ module.exports = {
   },
 
   postResource: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getCategory: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getTag: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   postLikes: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getCategories: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getTags: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getBookmarks: function(req, res) {
-    res.send('Im Working');
+    // todo
   }
 };
