@@ -1,9 +1,9 @@
 var Resource = require('./models').Resource;
+var Like = require('./models').Like;
 
 module.exports = {
   getResources: function(req, res) {
-    // promise version
-    Resource.findAll()
+    Resource.getAll()
       .then(function() {
         res.send();
       });
@@ -22,7 +22,7 @@ module.exports = {
   },
 
   postLikes: function(req, res) {
-    // todo
+    Like.post();
   },
 
   getCategories: function(req, res) {
