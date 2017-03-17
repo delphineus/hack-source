@@ -42,7 +42,14 @@ module.exports = {
   },
 
   getTags: function(req, res) {
-    // todo
+    Tag.getTags()
+      .then(function(err, tags) {
+        if (err) {
+          console.error('Error fetching tags: ', err);
+        } else {
+          res.send(resources);
+        }
+      });
   },
 
   getBookmarks: function(req, res) {
