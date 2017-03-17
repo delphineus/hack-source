@@ -2,14 +2,20 @@ const express = require('express');
 const app = express();
 const path = require('path')
 
+//establish port
 const port = process.env.PORT || 3000;
 
-
+//test server
 app.get('/api/test', function(req, res) {
-  res.send('Hello, World!');
+  res.send('<h1>Hello World! A product of the Constellation Delphinus</h1><img src="http://www.pixelstalk.net/wp-content/uploads/2016/01/Adventure-Time-Background-HD.jpg">') ;
 });
 
+//run middlewares
+require('./config/middleware.js')(app, express);
+// require('/routes.js')(app, express);
 
+
+//connect to port
 app.listen(port, function() {
   console.log(`P O R T 3000
 -+88_
