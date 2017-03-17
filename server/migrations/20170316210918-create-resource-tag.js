@@ -10,19 +10,11 @@ module.exports = {
       },
       ResourceId: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Resources',
-          key: 'id'
-        }
+        type: Sequelize.INTEGER
       },
       TagId: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Tags',
-          key: 'id'
-        }
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
