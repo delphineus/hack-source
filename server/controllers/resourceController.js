@@ -1,8 +1,16 @@
 var Resource = require('../models').Resource;
+var Like = require('../models').Like;
 
 module.exports = {
   getResources: function(req, res) {
-    res.send('Im Working');
+    Resource.findAll({
+      include: [
+        { model: Like }
+      ]
+    })
+    .then(function(resources) {
+      res.send(resources);
+    });
   },
 
   postResource: function(req, res) {
