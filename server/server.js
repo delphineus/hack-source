@@ -10,14 +10,7 @@ var jwt = require('jwt-simple');
 var routes = require('./routes');
 var authRoutes = require('./authRoutes');
 
-var port = process.env.PORT || 3000;
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
+const port = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
