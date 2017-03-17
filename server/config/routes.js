@@ -14,7 +14,7 @@ module.exports = function(app, express) {
   app.get('/api/user/bookmarks', resourceController.getBookmarks);
 
   // users
-  app.get('/api/users/', userController.checkAuth);
+
   app.get('/api/users/login', userController.login);
   app.get('/api/users/logout', userController.logout);
   app.post('/api/users', userController.signup);
