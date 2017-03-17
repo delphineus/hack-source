@@ -1,16 +1,17 @@
-var express = require('express');
-var app = express();
-var session = require('express-session');
-var passport = require('passport');
-var githubAuth = require('./githubAuth.js');
-var path = require('path');
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var jwt = require('jwt-simple');
-var routes = require('./routes');
-var authRoutes = require('./authRoutes');
+const express = require('express');
+const app = express();
+const path = require('path');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const routes = require('./routes');
 
 const port = process.env.PORT || 3000;
+
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/')));
+app.use('/api', routes);
 
 app.get('/api/test', function(req, res) {
   res.send('Hello, World!');
