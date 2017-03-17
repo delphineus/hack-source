@@ -14,9 +14,9 @@ router.get('/tags', resourceController.getTags);
 router.get('/user/bookmarks', resourceController.getBookmarks);
 
 // users
-router.get('/users', userController.checkAuth);
-router.get('/users/login', userController.login);
-router.get('/users/logout', userController.logout);
-router.post('/users', userController.signup);
+// router.get('/users', userController.checkAuth);
+router.post('/login', userController.login);
+router.get('/logout', userController.logout);
+router.post('/signup', userController.signup);
 
 module.exports = router;
