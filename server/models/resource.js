@@ -9,8 +9,10 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Resource.hasMany(models.Tag);
-        Resource.hasMany(models.Category);
+        // Resource.hasMany(models.Tag);
+        // Resource.hasMany(models.Category);
+        Resource.belongsToMany(models.Tag, {through: models.ResourceTag});
+        Resource.belongsToMany(models.Category, {through: models.ResourceCategory});
         Resource.hasMany(models.Like);
         Resource.hasMany(models.Bookmark);
         Resource.belongsTo(models.User);
