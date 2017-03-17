@@ -2,13 +2,12 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Like', [{
-      ResourceId: 1,
-      UserId: 1
+    return queryInterface.bulkInsert('Tag', [{
+      title: 'angular'
     }], {});
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Like', null, {});
+    return queryInterface.bulkDelete('Tag', null, {});
   }
 };
