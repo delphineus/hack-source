@@ -1,5 +1,4 @@
 var Resource = require('../models').Resource;
-var User = require('../models').User;
 var Like = require('../models').Like;
 var Bookmark = require('../models').Bookmark;
 var Category = require('../models').Category;
