@@ -12,6 +12,8 @@ module.exports = {
         { model: Like },
         { model: Category },
         { model: Tag },
+        // { model: Category, through: {} },
+        // { model: Tag, through: {} },
       ]
     })
     .then(function(resources) {
