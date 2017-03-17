@@ -1,14 +1,21 @@
 const express = require('express');
 const app = express();
-const path = require('path')
+const path = require('path');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const routes = require('./routes');
 
 const port = process.env.PORT || 3000;
 
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/')));
+app.use('/api', routes);
 
 app.get('/api/test', function(req, res) {
   res.send('Hello, World!');
 });
-
 
 app.listen(port, function() {
   console.log(`P O R T 3000
@@ -35,5 +42,5 @@ ________+++++++8888888888_
 ________+++++++0088888888_
 ________++++++0088888888_
 ________+++++0008888888_
-________#############_`)
+________#############_`);
 });
