@@ -2,39 +2,34 @@ var Resource = require('../models').Resource;
 
 module.exports = {
   getResources: function(req, res) {
-    // promise version
-    // Resource.findAll()
-    //   .then(function() {
-    //     res.send();
-    //   });
     res.send('Im Working');
   },
 
   postResource: function(req, res) {
-    // todo
+    res.send('Im Working');
   },
 
   getCategory: function(req, res) {
-    // todo
+    res.send('Im Working');
   },
 
   getTag: function(req, res) {
-    // todo
+    res.send('Im Working');
   },
 
   postLikes: function(req, res) {
-    // todo
+    res.send('Im Working');
   },
 
   getCategories: function(req, res) {
-    // todo
+    res.send('Im Working');
   },
 
   getTags: function(req, res) {
-    // todo
+    res.send('Im Working');
   },
 
   getBookmarks: function(req, res) {
-    // todo
+    res.send('Im Working');
   }
 };
