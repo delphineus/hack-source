@@ -7,11 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Tag.belongsToMany(models.Resource, {through: models.ResourceTag});
       }
-    }, {
-      setterMethods: {
-        getTags: function() {
-          return this.getDataValue('title');
-        }
+    },
+    setterMethods: {
+      getTags: function() {
+        return this.getDataValue('title');
       }
     }
   });
