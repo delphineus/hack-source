@@ -22,6 +22,12 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Categories', null, {});
+    return queryInterface.bulkInsert('Category', [{
+      title: 'async'
+    }], {});
+  },
+
+  down: function (queryInterface, Sequelize) {
+    return queryInterface.bulkDelete('Category', null, {});
   }
 };
