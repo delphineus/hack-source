@@ -1,49 +1,39 @@
-var Resource = require('../models').Resource;
-var User = require('../models').User;
-var Like = require('../models').Like;
-var Category = require('../models').Category;
-var Tag = require('../models').Tag;
+var Resource = require('./models').Resource;
 
 module.exports = {
   getResources: function(req, res) {
-    Resource.findAll({
-      include: [
-        { model: User },
-        { model: Like },
-        { model: Category },
-        { model: Tag },
-      ]
-    })
-    .then(function(resources) {
-      res.send(resources);
-    });
+    // promise version
+    Resource.findAll()
+      .then(function() {
+        res.send();
+      });
   },
 
   postResource: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getCategory: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getTag: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   postLikes: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getCategories: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getTags: function(req, res) {
-    res.send('Im Working');
+    // todo
   },
 
   getBookmarks: function(req, res) {
-    res.send('Im Working');
+    // todo
   }
 };
