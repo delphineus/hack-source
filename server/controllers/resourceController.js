@@ -1,6 +1,7 @@
 var Resource = require('../models').Resource;
 var User = require('../models').User;
 var Like = require('../models').Like;
+var Bookmark = require('../models').Bookmark;
 var Category = require('../models').Category;
 var Tag = require('../models').Tag;
 
@@ -10,8 +11,9 @@ module.exports = {
       include: [
         { model: User },
         { model: Like },
+        { model: Bookmark },
         { model: Category },
-        { model: Tag },
+        { model: Tag }
       ]
     })
     .then(function(resources) {
