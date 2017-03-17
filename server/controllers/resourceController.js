@@ -1,11 +1,16 @@
 var Resource = require('./models').Resource;
 var Like = require('./models').Like;
+var Tag = require('./models').Tag;
 
 module.exports = {
   getResources: function(req, res) {
     Resource.getAll()
-      .then(function() {
-        res.send();
+      .then(function(err, resources) {
+        if (err) {
+          console.error('Error fetching resources: ', err);
+        } else {
+          res.send(resources);
+        }
       });
   },
 
@@ -30,7 +35,14 @@ module.exports = {
   },
 
   getTags: function(req, res) {
-    // todo
+    Tag.getTags()
+      .then(function(err, tags) {
+        if (err) {
+          console.error('Error fetching tags: ', err);
+        } else {
+          res.send(resources);
+        }
+      });
   },
 
   getBookmarks: function(req, res) {
