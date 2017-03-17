@@ -1,27 +1,12 @@
-var openGraph = require('open-graph');
-var Resource = require('../models').Resource;
-var User = require('../models').User;
-var Like = require('../models').Like;
-var Bookmark = require('../models').Bookmark;
-var Category = require('../models').Category;
-var Tag = require('../models').Tag;
-var ResourceCategory = require('../models').ResourceCategory;
-var ResourceTag = require('../models').ResourceTag;
+var Resource = require('./models').Resource;
 
 module.exports = {
   getResources: function(req, res) {
-    Resource.findAll({
-      include: [
-        { model: User },
-        { model: Like },
-        { model: Bookmark },
-        { model: Category },
-        { model: Tag }
-      ]
-    })
-    .then(function(resources) {
-      res.send(resources);
-    });
+    // promise version
+    Resource.findAll()
+      .then(function() {
+        res.send();
+      });
   },
 
   getOpenGraph: function(req, res) {
@@ -79,18 +64,8 @@ module.exports = {
     });
   },
 
-  postLike: function(req, res) {
-    Like.create({
-      ResourceId: req.body.resourceId,
-      UserId: req.body.userId
-    })
-    .then(function(newLike) {
-      res.send(newLike);
-    })
-    .catch(function(err) {
-      res.send(err);
-      console.error(err);
-    });
+  postLikes: function(req, res) {
+    // todo
   },
 
   getCategories: function(req, res) {
@@ -105,56 +80,7 @@ module.exports = {
   },
 
   getTags: function(req, res) {
-    Tag.findAll()
-    .then(function(tags) {
-      res.send(tags);
-    })
-    .catch(function(err) {
-      res.send(err);
-      console.error(err);
-    });
-  },
-
-  postTag: function(req, res) {
-    Tag.create({
-      title: req.body.title
-    })
-    .then(function(tag) {
-      res.send(tag);
-    })
-    .catch(function(err) {
-      res.send(err);
-      console.error(err);
-    });
-  },
-
-  getMostPopularTags: function(req, res) {
-    ResourceTag.findAll()
-    .then(function(resourceTags) {
-      var tagCount = resourceTags.reduce((accum, curr) => {
-        accum[curr.TagId] ? accum[curr.TagId] += 1 : accum[curr.TagId] = 1;
-        return accum;
-      }, {});
-      var sortedIds = Object.keys(tagCount).sort((a, b) => tagCount[b] - tagCount[a]);
-      var topTwentyIds = sortedIds.splice(0, 20);
-      Tag.findAll({
-        where: {
-          id: {
-            $in: topTwentyIds
-          }
-        }
-      })
-      .then(function(tags) {
-        var tagsWithCount = tags.map(tag => {
-          return {
-            id: tag.id,
-            title: tag.title,
-            count: tagCount[tag.id]
-          };
-        });
-        res.send(tagsWithCount);
-      });
-    });
+    // todo
   },
 
   getBookmarks: function(req, res) {
