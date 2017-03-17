@@ -1,5 +1,5 @@
-var resourceController = require('../resources/resourceController.js');
-var userController = require('../users/userController.js');
+var resourceController = require('./controllers/resourceController.js');
+var userController = require('./controllers/userController.js');
 
 module.exports = function(app, express) {
   // resources
