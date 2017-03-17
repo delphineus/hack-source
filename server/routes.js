@@ -1,5 +1,6 @@
 var resourceController = require('./controllers/resourceController.js');
 var userController = require('./controllers/userController.js');
+var router = require('express').Router();
 
 module.exports = function(app, express) {
   // resources
