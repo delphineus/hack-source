@@ -4,11 +4,9 @@ const path = require('path');
 
 const port = process.env.PORT || 3000;
 
-
 app.get('/api/test', function(req, res) {
   res.send('Hello, World!');
 });
-
 
 app.listen(port, function() {
   console.log(`P O R T 3000
