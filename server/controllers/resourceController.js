@@ -4,6 +4,8 @@ var Like = require('../models').Like;
 var Bookmark = require('../models').Bookmark;
 var Category = require('../models').Category;
 var Tag = require('../models').Tag;
+var ResourceCategory = require('../models').ResourceCategory;
+var ResourceTag = require('../models').ResourceTag;
 
 module.exports = {
   getResources: function(req, res) {
@@ -22,14 +24,62 @@ module.exports = {
   },
 
   postResource: function(req, res) {
+    // [] insert 1 or MORE categories
+    // [] insert 0 or MORE tags
+    Resource.create({
+      url: req.body.url,
+      title: req.body.title,
+      imgUrl: req.body.imgUrl,
+      summary: req.body.summary,
+      UserId: req.body.UserId
+    })
+    .then(function(resource) {
+      Category.findOne({
+        where: { title: req.body.categoryTitle }
+      })
+      .then(function(category) {
+        ResourceCategory.create({
+          ResourceId: resource.id,
+          CategoryId: category.id
+        })
+        .then(function(resourceCategory) {
+          Tag.findOne({
+            where: { title: req.body.tagTitle }
+          })
+          .then(function(foundTag) {
+            if (!foundTag) {
+              Tag.create({
+                title: req.body.tagTitle
+              })
+              .then(function(newTag) {
+                ResourceTag.create({
+                  ResourceId: resource.id,
+                  TagId: newTag.id
+                })
+                .then(function(resourceNewTag) {
+                  res.send(resourceNewTag);
+                });
+              });
+            } else {
+              ResourceTag.create({
+                ResourceId: resource.id,
+                TagId: foundTag.id
+              })
+              .then(function(resourceFoundTag) {
+                res.send(resourceFoundTag);
+              });
+            }
+          });
+        });
+      });
+    });
+  },
+
+  getResourcesByCategory: function(req, res) {
     res.send('Im Working');
   },
 
-  getCategory: function(req, res) {
-    res.send('Im Working');
-  },
-
-  getTag: function(req, res) {
+  getResourcesByTag: function(req, res) {
     res.send('Im Working');
   },
 

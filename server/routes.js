@@ -5,8 +5,8 @@ var router = require('express').Router();
 // resources
 router.get('/resources', resourceController.getResources);
 router.post('/resources', resourceController.postResource);
-router.get('/resources/category', resourceController.getCategory);
-router.get('/resources/tag', resourceController.getTag);
+router.get('/resources/category', resourceController.getResourcesByCategory);
+router.get('/resources/tag', resourceController.getResourcesByTag);
 
 router.post('/likes', resourceController.postLikes);
 router.get('/categories', resourceController.getCategories);
