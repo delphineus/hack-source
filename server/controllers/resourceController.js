@@ -1,5 +1,4 @@
 var Resource = require('../models').Resource;
-var User = require('../models').User;
 var Like = require('../models').Like;
 var Bookmark = require('../models').Bookmark;
 var Category = require('../models').Category;
@@ -77,18 +76,42 @@ module.exports = {
   },
 
   postLikes: function(req, res) {
-    res.send('Im Working');
+    Like.create({
+      ResourceId: req.body.resourceId,
+      UserId: 1 // TODO switch to pull data from SESSION
+    })
+    .then(function(newLike) {
+      res.send(newLike);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
+    });
   },
 
   getCategories: function(req, res) {
-    res.send('Im Working');
+    Category.findAll()
+    .then(function(categories) {
+      res.send(categories);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
+    });
   },
 
   getTags: function(req, res) {
-    res.send('Im Working');
+    Tag.findAll()
+    .then(function(tags) {
+      res.send(tags);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
+    });
   },
 
   getBookmarks: function(req, res) {
-    res.send('Im Working');
+    // todo
   }
 };

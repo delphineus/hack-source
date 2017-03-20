@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
@@ -10,10 +11,10 @@ const port = process.env.PORT || 3000;
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/')));
+app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api', routes);
 
-app.get('/api/test', function(req, res) {
+app.get('/', function(req, res) {
   res.send('Hello, World!');
 });
 
