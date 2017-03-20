@@ -22,6 +22,7 @@ module.exports = {
   },
 
   logout: function(req, res) {
+    // TODO destroy session
     res.send('Im Working');
   },
 
