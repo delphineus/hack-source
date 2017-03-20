@@ -111,6 +111,35 @@ module.exports = {
     });
   },
 
+  getMostPopularTags: function(req, res) {
+    ResourceTag.findAll()
+    .then(function(resourceTags) {
+      var tagCount = resourceTags.reduce((accum, curr) => {
+        accum[curr.TagId] ? accum[curr.TagId] += 1 : accum[curr.TagId] = 1;
+        return accum;
+      }, {});
+      var sortedIds = Object.keys(tagCount).sort((a, b) => tagCount[b] - tagCount[a]);
+      var topTwentyIds = sortedIds.splice(0, 20);
+      Tag.findAll({
+        where: {
+          id: {
+            $in: topTwentyIds
+          }
+        }
+      })
+      .then(function(tags) {
+        var tagsWithCount = tags.map(tag => {
+          return {
+            id: tag.id,
+            title: tag.title,
+            count: tagCount[tag.id]
+          };
+        });
+        res.send(tagsWithCount);
+      });
+    });
+  },
+
   getBookmarks: function(req, res) {
     Bookmark.findAll()
     .then(function(bookmarks) {
@@ -120,6 +149,5 @@ module.exports = {
       res.send(err);
       console.error(err);
     });
-
   }
 };
