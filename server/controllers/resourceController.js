@@ -68,10 +68,12 @@ module.exports = {
   },
 
   getResourcesByCategory: function(req, res) {
+    // TODO waiting on confirmation from frontend team re: deletion
     res.send('Im Working');
   },
 
   getResourcesByTag: function(req, res) {
+    // TODO waiting on confirmation from frontend team re: deletion
     res.send('Im Working');
   },
 

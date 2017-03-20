@@ -5,8 +5,8 @@ var router = require('express').Router();
 // resources
 router.get('/resources', resourceController.getResources); // [x]
 router.post('/resources', resourceController.postResource); // [x - update w/ session info]
-router.get('/resources/category', resourceController.getResourcesByCategory); // []
-router.get('/resources/tag', resourceController.getResourcesByTag); // []
+router.get('/resources/category', resourceController.getResourcesByCategory); // [on hold]
+router.get('/resources/tag', resourceController.getResourcesByTag); // [on hold]
 
 router.post('/likes', resourceController.postLikes); // [x]
 router.get('/bookmarks', resourceController.getBookmarks); // [x]
