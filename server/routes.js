@@ -8,10 +8,11 @@ router.post('/resources', resourceController.postResource); // [x - update w/ se
 router.get('/resources/category', resourceController.getResourcesByCategory); // [on hold]
 router.get('/resources/tag', resourceController.getResourcesByTag); // [on hold]
 
-router.post('/likes', resourceController.postLikes); // [x]
+router.post('/likes', resourceController.postLike); // [x]
 router.get('/bookmarks', resourceController.getBookmarks); // [x]
 router.get('/categories', resourceController.getCategories); // [x]
 router.get('/tags', resourceController.getTags); // [x]
+router.post('/tags', resourceController.postTag) // [x]
 router.get('/most-popular-tags', resourceController.getMostPopularTags); // [x]
 
 // users

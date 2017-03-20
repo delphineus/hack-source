@@ -77,7 +77,7 @@ module.exports = {
     res.send('Im Working');
   },
 
-  postLikes: function(req, res) {
+  postLike: function(req, res) {
     Like.create({
       ResourceId: req.body.resourceId,
       UserId: 1 // TODO switch to pull data from SESSION
@@ -106,6 +106,19 @@ module.exports = {
     Tag.findAll()
     .then(function(tags) {
       res.send(tags);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
+    });
+  },
+
+  postTag: function(req, res) {
+    Tag.create({
+      title: req.body.title
+    })
+    .then(function(tag) {
+      res.send(tag);
     })
     .catch(function(err) {
       res.send(err);
