@@ -8,10 +8,10 @@ router.post('/resources', resourceController.postResource);
 router.get('/resources/category', resourceController.getResourcesByCategory);
 router.get('/resources/tag', resourceController.getResourcesByTag);
 
-router.post('/resources/likes', resourceController.postLikes);
+router.post('/likes', resourceController.postLikes);
+router.get('/bookmarks', resourceController.getBookmarks);
 router.get('/categories', resourceController.getCategories);
 router.get('/tags', resourceController.getTags);
-router.get('/user/bookmarks', resourceController.getBookmarks);
 
 // users
 router.post('/login', userController.login);
