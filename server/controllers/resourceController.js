@@ -24,54 +24,47 @@ module.exports = {
   },
 
   postResource: function(req, res) {
-    // [] insert 1 or MORE categories
-    // [] insert 0 or MORE tags
+    var categoryIds = [];
+    var tagIds = [];
     Resource.create({
       url: req.body.url,
       title: req.body.title,
       imgUrl: req.body.imgUrl,
       summary: req.body.summary,
-      UserId: req.body.UserId
+      UserId: 1 // TODO get UserId from SESSION
     })
-    .then(function(resource) {
-      Category.findOne({
-        where: { title: req.body.categoryTitle }
+    .then(function(newResource) {
+      Category.findAll({
+        where: {
+          title: {
+            $in: JSON.parse(req.body.categories) // TODO shouldn't need to parse when getting data from site
+          }
+        }
       })
-      .then(function(category) {
-        ResourceCategory.create({
-          ResourceId: resource.id,
-          CategoryId: category.id
-        })
-        .then(function(resourceCategory) {
-          Tag.findOne({
-            where: { title: req.body.tagTitle }
-          })
-          .then(function(foundTag) {
-            if (!foundTag) {
-              Tag.create({
-                title: req.body.tagTitle
-              })
-              .then(function(newTag) {
-                ResourceTag.create({
-                  ResourceId: resource.id,
-                  TagId: newTag.id
-                })
-                .then(function(resourceNewTag) {
-                  res.send(resourceNewTag);
-                });
-              });
-            } else {
-              ResourceTag.create({
-                ResourceId: resource.id,
-                TagId: foundTag.id
-              })
-              .then(function(resourceFoundTag) {
-                res.send(resourceFoundTag);
-              });
+      .then(function(categories) {
+        categories.forEach(category => categoryIds.push({ ResourceId: newResource.id, CategoryId: category.id }));
+        Tag.findAll({
+          where: {
+            title: {
+              $in: JSON.parse(req.body.tags) // TODO shouldn't need to parse when getting data from site
             }
+          }
+        })
+        .then(function(tags) {
+          tags.forEach(tag => tagIds.push({ ResourceId: newResource.id, TagId: tag.id }));
+          ResourceCategory.bulkCreate(categoryIds)
+          .then(function(resourceCats) {
+            ResourceTag.bulkCreate(tagIds)
+            .then(function(resourceTags) {
+              res.send(newResource);
+            });
           });
         });
       });
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
     });
   },
 
