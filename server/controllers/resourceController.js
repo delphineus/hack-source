@@ -112,6 +112,14 @@ module.exports = {
   },
 
   getBookmarks: function(req, res) {
-    // todo
+    Bookmark.findAll()
+    .then(function(bookmarks) {
+      res.send(bookmarks);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
+    });
+
   }
 };
