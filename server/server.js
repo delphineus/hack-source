@@ -1,21 +1,74 @@
-const express = require('express');
-const app = express();
-const path = require('path');
+var express = require('express');
+var app = express();
+var session = require('express-session');
+var passport = require('passport');
+var GITHUB = require('./config/github-config.js');
+var GitHubStrategy = require('passport-github2').Strategy;
+var path = require('path');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var routes = require('./routes');
 
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const routes = require('./routes');
+var port = process.env.PORT || 3000;
 
-const port = process.env.PORT || 3000;
+// serialize and deserialize
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+// gitHub auth config
+passport.use(new GitHubStrategy({
+  clientID: GITHUB.clientID,
+  clientSecret: GITHUB.clientSecret,
+  callbackURL: GITHUB.callbackURL
+},
+  function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+      return done(null, profile);
+    });
+  }
+));
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api', routes);
 
-app.get('/', function(req, res) {
-  res.send('Hello, World!');
+var ensureAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+};
+
+app.get('/logged-in', ensureAuthenticated, function(req, res) {
+  res.send('You are now logged in ' + JSON.stringify(req.user));
+});
+
+app.get('/login', function(req, res) {
+  res.send('Please login.');
+});
+
+app.get('/auth/github',
+  passport.authenticate('github'),
+  function(req, res) {}
+);
+
+app.get('/auth/github/callback',
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/logged-in');
+  }
+);
+
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/login');
 });
 
 app.listen(port, function() {
