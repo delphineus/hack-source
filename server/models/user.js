@@ -1,6 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
+    githubId: DataTypes.STRING,
     username: DataTypes.STRING,
     displayName: DataTypes.STRING,
     profileUrl: DataTypes.STRING,

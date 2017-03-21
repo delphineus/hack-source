@@ -8,9 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      githubId: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       username: {
         allowNull: false,
-        unique: true,
         type: Sequelize.STRING
       },
       displayName: {
