@@ -92,11 +92,6 @@ app.get('/auth/github/callback',
   }
 );
 
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/login');
-});
-
 app.listen(port, function() {
   console.log(`P O R T 3000
 -+88_
