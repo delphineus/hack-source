@@ -12,7 +12,7 @@ router.post('/likes', resourceController.postLike); // [x]
 router.get('/bookmarks', resourceController.getBookmarks); // [x]
 router.get('/categories', resourceController.getCategories); // [x]
 router.get('/tags', resourceController.getTags); // [x]
-router.post('/tags', resourceController.postTag) // [x]
+router.post('/tags', resourceController.postTag); // [x]
 router.get('/most-popular-tags', resourceController.getMostPopularTags); // [x]
 
 // users
