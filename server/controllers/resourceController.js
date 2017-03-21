@@ -31,7 +31,7 @@ module.exports = {
       title: req.body.title,
       imgUrl: req.body.imgUrl,
       summary: req.body.summary,
-      UserId: 1 // TODO get UserId from SESSION
+      UserId: 1 // TODO get UserId from SESSION -- req.user.id
     })
     .then(function(newResource) {
       Category.findAll({
@@ -68,20 +68,10 @@ module.exports = {
     });
   },
 
-  getResourcesByCategory: function(req, res) {
-    // TODO waiting on confirmation from frontend team re: deletion
-    res.send('Im Working');
-  },
-
-  getResourcesByTag: function(req, res) {
-    // TODO waiting on confirmation from frontend team re: deletion
-    res.send('Im Working');
-  },
-
   postLike: function(req, res) {
     Like.create({
       ResourceId: req.body.resourceId,
-      UserId: 1 // TODO switch to pull data from SESSION
+      UserId: 1 // TODO get UserId from SESSION -- req.user.id
     })
     .then(function(newLike) {
       res.send(newLike);

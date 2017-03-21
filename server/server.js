@@ -2,55 +2,21 @@ var express = require('express');
 var app = express();
 var session = require('express-session');
 var passport = require('passport');
-var GITHUB = require('./config/github-config.js');
-var GitHubStrategy = require('passport-github2').Strategy;
+var githubAuth = require('./githubAuth.js');
 var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
-var User = require('./models').User;
+var authRoutes = require('./authRoutes');
 
 var port = process.env.PORT || 3000;
 
-// serialize and deserialize
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
 passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
-
-// gitHub auth config
-passport.use(new GitHubStrategy({
-  clientID: GITHUB.clientID,
-  clientSecret: GITHUB.clientSecret,
-  callbackURL: GITHUB.callbackURL
-},
-  function(accessToken, refreshToken, profile, done) {
-    User.findOne({
-      where: { githubId: profile.id }
-    })
-    .then(function(foundUser) {
-      if (!foundUser) {
-        User.create({
-          githubId: profile.id,
-          username: profile.username,
-          displayName: profile.displayName,
-          profileUrl: profile.profileUrl,
-          avatarUrl: profile.avatar_url
-        })
-        .then(function(newUser) {
-          done(null, newUser);
-        });
-      } else {
-        done(null, foundUser);
-      }
-    })
-    .catch(function(err) {
-      console.error(err);
-    });
-  }
-));
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -60,12 +26,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api', routes);
+app.use('/auth', authRoutes);
 
+// here for testing purposes until frontend setup
 var ensureAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login');
 };
 
+// here for testing purposes until frontend setup
 app.get('/logged-in', ensureAuthenticated, function(req, res) {
   res.send('You are now logged in ' + JSON.stringify({
     id: req.user.id,
@@ -74,23 +43,8 @@ app.get('/logged-in', ensureAuthenticated, function(req, res) {
     profileUrl: req.user.profileUrl,
     avatarUrl: req.user.avatarUrl
   }));
+  req.session.user = req.user.id;
 });
-
-app.get('/login', function(req, res) {
-  res.send('Please login.');
-});
-
-app.get('/auth/github',
-  passport.authenticate('github'),
-  function(req, res) {}
-);
-
-app.get('/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/logged-in');
-  }
-);
 
 app.listen(port, function() {
   console.log(`P O R T 3000
