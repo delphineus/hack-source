@@ -1,23 +1,21 @@
+var router = require('express').Router();
+var passport = require('passport');
 var resourceController = require('./controllers/resourceController.js');
 var userController = require('./controllers/userController.js');
-var router = require('express').Router();
 
 // resources
-router.get('/resources', resourceController.getResources); // [x]
+router.get('/resources', resourceController.getResources);
 router.post('/resources', resourceController.postResource); // [x - update w/ session info]
-router.get('/resources/category', resourceController.getResourcesByCategory); // [on hold]
-router.get('/resources/tag', resourceController.getResourcesByTag); // [on hold]
 
-router.post('/likes', resourceController.postLike); // [x]
-router.get('/bookmarks', resourceController.getBookmarks); // [x]
-router.get('/categories', resourceController.getCategories); // [x]
-router.get('/tags', resourceController.getTags); // [x]
-router.post('/tags', resourceController.postTag); // [x]
-router.get('/most-popular-tags', resourceController.getMostPopularTags); // [x]
+router.post('/likes', resourceController.postLike);
+router.get('/bookmarks', resourceController.getBookmarks);
+router.get('/categories', resourceController.getCategories);
+router.get('/tags', resourceController.getTags);
+router.post('/tags', resourceController.postTag);
+router.get('/most-popular-tags', resourceController.getMostPopularTags);
 
 // users
-router.post('/login', userController.login); // [x - update w/ github auth]
-router.get('/logout', userController.logout); // [ waiting for github auth]
-router.post('/signup', userController.signup); // [x - update w/ github auth]
+router.get('/login', userController.login); // using until we have login setup on frontend
+router.get('/logout', userController.logout);
 
 module.exports = router;

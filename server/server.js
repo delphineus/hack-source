@@ -1,21 +1,49 @@
-const express = require('express');
-const app = express();
-const path = require('path');
+var express = require('express');
+var app = express();
+var session = require('express-session');
+var passport = require('passport');
+var githubAuth = require('./githubAuth.js');
+var path = require('path');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var routes = require('./routes');
+var authRoutes = require('./authRoutes');
 
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const routes = require('./routes');
+var port = process.env.PORT || 3000;
 
-const port = process.env.PORT || 3000;
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api', routes);
+app.use('/auth', authRoutes);
 
-app.get('/', function(req, res) {
-  res.send('Hello, World!');
+// here for testing purposes until frontend setup
+var ensureAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+};
+
+// here for testing purposes until frontend setup
+app.get('/logged-in', ensureAuthenticated, function(req, res) {
+  res.send('You are now logged in ' + JSON.stringify({
+    id: req.user.id,
+    displayName: req.user.displayName,
+    username: req.user.username,
+    profileUrl: req.user.profileUrl,
+    avatarUrl: req.user.avatarUrl
+  }));
+  req.session.user = req.user.id;
 });
 
 app.listen(port, function() {

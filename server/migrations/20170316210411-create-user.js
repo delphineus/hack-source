@@ -8,13 +8,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
+      githubId: {
         allowNull: false,
-        unique: true,
         type: Sequelize.STRING
       },
-      password: {
+      username: {
         allowNull: false,
+        type: Sequelize.STRING
+      },
+      displayName: {
+        type: Sequelize.STRING
+      },
+      profileUrl: {
+        type: Sequelize.STRING
+      },
+      avatarUrl: {
         type: Sequelize.STRING
       },
       createdAt: {
