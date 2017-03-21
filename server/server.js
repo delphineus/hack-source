@@ -47,7 +47,13 @@ var ensureAuthenticated = function (req, res, next) {
 };
 
 app.get('/logged-in', ensureAuthenticated, function(req, res) {
-  res.send('You are now logged in ' + JSON.stringify(req.user));
+  res.send('You are now logged in ' + JSON.stringify({
+    id: req.user.id,
+    displayName: req.user.displayName,
+    username: req.user.username,
+    profileUrl: req.user.profileUrl,
+    avatarUrl: req.user._json.avatar_url
+  }));
 });
 
 app.get('/login', function(req, res) {

@@ -13,8 +13,13 @@ module.exports = {
         unique: true,
         type: Sequelize.STRING
       },
-      password: {
-        allowNull: false,
+      displayName: {
+        type: Sequelize.STRING
+      },
+      profileUrl: {
+        type: Sequelize.STRING
+      },
+      avatarUrl: {
         type: Sequelize.STRING
       },
       createdAt: {
