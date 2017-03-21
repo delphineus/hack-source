@@ -8,6 +8,7 @@ var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
+var User = require('./models').User;
 
 var port = process.env.PORT || 3000;
 
@@ -26,8 +27,27 @@ passport.use(new GitHubStrategy({
   callbackURL: GITHUB.callbackURL
 },
   function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      return done(null, profile);
+    User.findOne({
+      where: { githubId: profile.id }
+    })
+    .then(function(foundUser) {
+      if (!foundUser) {
+        User.create({
+          githubId: profile.id,
+          username: profile.username,
+          displayName: profile.displayName,
+          profileUrl: profile.profileUrl,
+          avatarUrl: profile.avatar_url
+        })
+        .then(function(newUser) {
+          done(null, newUser);
+        });
+      } else {
+        done(null, foundUser);
+      }
+    })
+    .catch(function(err) {
+      console.error(err);
     });
   }
 ));
@@ -52,7 +72,7 @@ app.get('/logged-in', ensureAuthenticated, function(req, res) {
     displayName: req.user.displayName,
     username: req.user.username,
     profileUrl: req.user.profileUrl,
-    avatarUrl: req.user._json.avatar_url
+    avatarUrl: req.user.avatarUrl
   }));
 });
 
