@@ -3,7 +3,6 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var GITHUB = require('./config/github-config.js');
 var User = require('./models').User;
 
-// passport/gitHub auth config
 module.exports = passport.use(new GitHubStrategy({
   clientID: GITHUB.clientID,
   clientSecret: GITHUB.clientSecret,
