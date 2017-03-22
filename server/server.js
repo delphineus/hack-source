@@ -29,14 +29,11 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api', routes);
 app.use('/auth', authRoutes);
 
-// here for testing purposes until frontend setup
 var ensureAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  // res.redirect('/login');
   res.json({token: null, user: null});
 };
 
-// here for testing purposes until frontend setup
 app.get('/logged-in', ensureAuthenticated, function(req, res) {
   var token = jwt.encode(req.user, 'secret');
   res.json({token: token, user: req.user});
