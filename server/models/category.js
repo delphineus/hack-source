@@ -8,6 +8,6 @@ module.exports = function(sequelize, DataTypes) {
         Category.belongsToMany(models.Resource, {through: models.ResourceCategory});
       }
     }
-  };
+  });
   return Category;
 };

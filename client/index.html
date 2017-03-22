@@ -13,19 +13,25 @@
 <body layout="column" ng-app="hackSource">
 
   <!-- Container 1 -->
-  <md-toolbar layout="row">
-    <div class="md-toolbar-tools">
-      <div flex="25">
-        <h1>Delphinus</h1>
-      </div>
-      <div flex="75" layout-align="end center" layout="row">
-        <md-button class="md-raised">
-          Add Resource
-        </md-button>
-        <div>
-          <login></login>
-        </div>
-      </div>
+  <md-toolbar layout="row" class="md-toolbar-tools">
+    <div flex="15">
+      <h1>Delphinus</h1>
+    </div>
+    <div flex="40">
+      <md-content layout="row" layout-xs="row">
+        <md-input-container layout="row" layout-xs="row">
+          <label>Search categories/tags</label>
+          <input>
+        </md-input-container>
+      </md-content>
+    </div>
+    <div ng-controller="AddResourceController" flex="20">
+      <md-button class="md-raised" ng-click="showLinkTab($event)">
+        Add Resource
+      </md-button>
+    </div>
+    <div>
+      <login></login>
     </div>
   </md-toolbar>
 
@@ -67,6 +73,7 @@
   <script src="app/services/services.js"></script>
   <script src="app/app.js"></script>
   <script src="app/login/login.js"></script>
+  <script src="app/addResource/addResource.js"></script>
 
   <!-- testing -->
   <script>
