@@ -5,7 +5,7 @@
 </a>
 <div ng-show='!isNoUser'>
   <md-button class="md-raised">
-    Logged In User: {{userData.username}}
+    <img class="login-avatar-img" ng-src="{{userData.avatarUrl}}" />{{userData.username}}
   </md-button>
   <a href="/api/logout">
     <md-button class="md-raised">
