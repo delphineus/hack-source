@@ -1,0 +1,30 @@
+  <md-dialog aria-label="Share your resource">
+  <form ng-cloak name=resourceForm>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Share your resource</h2>
+        <span flex></span>
+        <md-button ng-click="cancel()">
+          cancel
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <div layout-gt-xs="row">
+      <md-input-container>
+        <label>Enter URL</label>
+        <input required type="url" name="link">
+
+        <div ng-messages="resourceForm.link.$error" md-auto-hide="false">
+          <div ng-message="required">
+            We'd really like to share your resource
+          </div>
+        </div>
+      </md-input-container>
+    </div>
+
+    <div>
+      <md-button type="submit">Submit</md-button>
+    </div>
+  </form>
+</md-dialog>
