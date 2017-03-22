@@ -6,6 +6,7 @@ var githubAuth = require('./githubAuth.js');
 var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var jwt = require('jwt-simple');
 var routes = require('./routes');
 var authRoutes = require('./authRoutes');
 
@@ -31,19 +32,14 @@ app.use('/auth', authRoutes);
 // here for testing purposes until frontend setup
 var ensureAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login');
+  // res.redirect('/login');
+  res.json({token: null, user: null});
 };
 
 // here for testing purposes until frontend setup
 app.get('/logged-in', ensureAuthenticated, function(req, res) {
-  res.send('You are now logged in ' + JSON.stringify({
-    id: req.user.id,
-    displayName: req.user.displayName,
-    username: req.user.username,
-    profileUrl: req.user.profileUrl,
-    avatarUrl: req.user.avatarUrl
-  }));
-  req.session.user = req.user.id;
+  var token = jwt.encode(req.user, 'secret');
+  res.json({token: token, user: req.user});
 });
 
 app.listen(port, function() {

@@ -20,7 +20,7 @@ module.exports = passport.use(new GitHubStrategy({
           username: profile.username,
           displayName: profile.displayName,
           profileUrl: profile.profileUrl,
-          avatarUrl: profile.avatar_url
+          avatarUrl: profile._json.avatar_url
         })
         .then(function(newUser) {
           done(null, newUser);
