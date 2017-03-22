@@ -1,0 +1,15 @@
+<a href="/auth/github" ng-show='isNoUser'>
+  <md-button class="md-raised">
+    <i class="fa fa-github fa-2x" aria-hidden="true" style="margin-top: 5px;"></i> Login w/ GitHub
+  </md-button>
+</a>
+<div ng-show='!isNoUser'>
+  <md-button class="md-raised">
+    Logged In User: {{userData.username}}
+  </md-button>
+  <a href="/api/logout">
+    <md-button class="md-raised">
+      Logout
+    </md-button>
+  </a>
+</div>
