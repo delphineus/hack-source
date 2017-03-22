@@ -1,26 +1,40 @@
 angular.module('hackSource')
 
-.controller('LoginController', function($scope, $http, $window) {
-  $scope.userData = {};
-  $scope.isNoUser = true;
+.factory('User', function ($http) {
+  var user = {};
+  var isNoUser = true;
 
-  $scope.checkLoggedIn = function() {
+  var checkLoggedIn = function() {
     return $http({
       method: 'GET',
       url: '/logged-in'
     })
     .then(function(response) {
-      console.log(response.data);
       if (response.data.user) {
-        $scope.userData = response.data.user;
-        $scope.isNoUser = false;
+        user = response.data.user;
+        isNoUser = false;
       }
+      return {user: user, isNoUser: isNoUser};
     });
   };
 
+  return {
+    user: user,
+    isNoUser: isNoUser,
+    checkLoggedIn: checkLoggedIn
+  };
+})
+
+.controller('LoginController', function($scope, $http, $window, User) {
+  $scope.userData = User.user;
+  $scope.isNoUser = User.isNoUser;
+
   $scope.checkPath = function() {
     if ($window.location.pathname === '/') {
-      $scope.checkLoggedIn();
+      User.checkLoggedIn().then(function(response) {
+        $scope.userData = response.user;
+        $scope.isNoUser = response.isNoUser;
+      });
     }
   };
 
