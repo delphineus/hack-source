@@ -71,9 +71,10 @@ module.exports = {
   postLike: function(req, res) {
     Like.create({
       ResourceId: req.body.resourceId,
-      UserId: 1 // TODO get UserId from SESSION -- req.user.id
+      UserId: req.body.userId
     })
     .then(function(newLike) {
+      console.log('newLike  --------', newLike)
       res.send(newLike);
     })
     .catch(function(err) {

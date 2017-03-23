@@ -12,7 +12,7 @@ angular.module('hackSource.vote', [])
 		return $http({
 			method: 'POST',
 			url: 'api/likes',
-			data: {'ResourceId': 3, 'UserId': 2}
+			data: {'resourceId': resourceId, 'userId': userId}
 		})
 		.then(function(data) {
 			console.log('like successfully posted', data)
@@ -25,14 +25,20 @@ angular.module('hackSource.vote', [])
 
 	return {incrementer: incrementer, count: count, addLikes: addLikes}
 }])
-.controller('VoteCtrl', function($scope, counter) {
+.controller('VoteCtrl', function($scope, counter, User) {
+	var userId;
+	var resourceId = $scope.resource.id
+	User.checkLoggedIn().then(function(user) { 
+		if (user.user.id === undefined) {
+			$scope.flagVariable = true;
+		};
+		userId = user.user.id; });
 	$scope.vote = $scope.resource.Likes.length;
 	$scope.flagVariable = false;
 	$scope.upVote = function() {
-		counter.incrementer();
 		$scope.vote++;
 		$scope.flagVariable = true;
-		counter.addLikes()
+		counter.addLikes(resourceId, userId)
 		.then(function(data) {
 			console.log('successfully added like', data);
 		})
@@ -54,50 +60,4 @@ angular.module('hackSource.vote', [])
 	}	
 });
 
-// angular.module('hackSource.vote')
 
-// .factory('voteFactory', function() {
-// 	return {
-// 		getVotes: function(next) {
-// 			next({
-// 				'index': {
-// 					1: 
-// 						{
-// 						'id': 1,
-// 						'upvotes' : 0,
-// 						'user_actions' : {
-// 							'voted': false
-// 						}
-// 					}
-// 				}
-// 			})
-// 		}
-// 	}
-// })
-
-// .controller('voteCtrl', ['voteFactory', function(voteFactory) {
-// 	var data = this;
-
-// 	data.functions = {
-// 		getFeed = function() {
-// 			voteFactory.getVotes(function(response) {
-// 				data.feed = response.index;
-// 			});
-// 		}
-// 	};
-
-// 	this.functions.getFeed()
-
-// 	this.upVote = function(e) { e.upvotes++; console.log('in this.upvote'); }
-// }
-
-// ])
-
-
-// .directive('myVote', function() {
-// 	return {
-// 		restrict: 'E',
-// 		templateUrl: 'app/vote/vote.html',
-// 		controller: 'voteCtrl'
-// 	};
-// })
