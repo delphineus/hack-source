@@ -1,5 +1,5 @@
   <md-dialog aria-label="Share your resource">
-  <form ng-cloak name=resourceForm>
+  <form name=resourceForm>
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Share your resource</h2>
@@ -10,21 +10,70 @@
       </div>
     </md-toolbar>
 
-    <div layout-gt-xs="row">
-      <md-input-container>
-        <label>Enter URL</label>
-        <input required type="url" name="link">
+    <md-dialog-content style="width:650px;max-height:650px; ">
+      <md-tabs md-selected="selectedTab" md-dynamic-height md-border-bottom>
 
-        <div ng-messages="resourceForm.link.$error" md-auto-hide="false">
-          <div ng-message="required">
-            We'd really like to share your resource
-          </div>
-        </div>
-      </md-input-container>
-    </div>
+        <md-tab label="1. LINK" ng-disabled="true">
+          <md-content class="md-padding">
+            <md-input-container class="md-block">
+               <label>Enter URL</label>
+               <input type="url" ng-model="tUrl">
+            </md-input-container>
+          </md-content>
+        </md-tab>
 
-    <div>
-      <md-button type="submit">Submit</md-button>
-    </div>
+        <md-tab label="2. INFO" ng-disabled="true">
+          <md-content class="md-padding">
+            <p>Click any section to edit</p>
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{ metaData.title }}</span>
+                  <span class="md-subhead">{{ metaData.subhead }}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                  <div class="md-media-lg card-media"></div>
+                </md-card-title-media>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button>Action 1</md-button>
+                <md-button>Action 2</md-button>
+              </md-card-actions>
+            </md-card>
+          </md-content>
+        </md-tab>
+
+        <md-tab label="3. Category" ng-disabled="true">
+          <md-content class="md-padding">
+            <md-input-container class="md-block">
+              <label>Category</label>
+              <md-select ng-model="categories">
+                <md-option ng-repeat="category in categories" ng-value="category.title">
+                  {{ category.title }}
+                </md-option>
+                <md-option ng-value="Backbone">Backbone</md-option>
+                <md-option ng-value="Backbone">Backbone</md-option>
+                <md-option ng-value="Backbone">Backbone</md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Tags</label>
+              <textarea md-select-on-focus></textarea>
+            </md-input-container>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-disabled="selectedTab === 0" ng-click="prevTab()">
+        PREVIOUS
+      </md-button>
+      <span flex></span>
+      <md-button ng-disabled="!tUrl || selectedTab === 2" ng-click="nextTab(tUrl)" style="margin-right:20px;">
+        NEXT
+      </md-button>
+    </md-dialog-actions>
   </form>
 </md-dialog>
