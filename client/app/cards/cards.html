@@ -1,0 +1,24 @@
+<div ng-controller='cardsCtrl'>
+  <md-card
+    md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
+    md-theme-watch
+    ng-repeat='resource in data'>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">{{resource.title}}</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <img src={{resource.imgUrl}} width='300' height='150'>
+      {{resource.summary}}
+      <hr>
+      {{resource.createdAt}}
+      <my-vote></my-vote>
+    </md-card-content>
+  </md-card>
+</div>
+<div ng-controller="cardsCtrl">
+  data length: {{data.length}}
+  get function: {{testGet}}
+  <my-vote></my-vote>
+</div>
