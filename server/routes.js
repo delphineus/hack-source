@@ -15,7 +15,6 @@ router.post('/tags', resourceController.postTag);
 router.get('/most-popular-tags', resourceController.getMostPopularTags);
 
 // users
-router.get('/login', userController.login); // using until we have login setup on frontend
 router.get('/logout', userController.logout);
 
 module.exports = router;
