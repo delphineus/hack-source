@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('hackSource')
+angular.module('hackSource.vote', [])
 
 .factory('counter', ['$http', function($http) {
 	var count = 0;
@@ -26,11 +26,11 @@ angular.module('hackSource')
 	return {incrementer: incrementer, count: count, addLikes: addLikes}
 }])
 .controller('VoteCtrl', function($scope, counter) {
-	$scope.vote = counter.count;
+	$scope.vote = $scope.resource.Likes.length;
 	$scope.flagVariable = false;
 	$scope.upVote = function() {
 		counter.incrementer();
-		$scope.vote = counter.count;
+		$scope.vote++;
 		$scope.flagVariable = true;
 		counter.addLikes()
 		.then(function(data) {
