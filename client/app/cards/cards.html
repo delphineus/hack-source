@@ -12,7 +12,7 @@
       <img src={{resource.imgUrl}} width='300' height='150'>
       {{resource.summary}}
       <hr>
-      {{resource.createdAt}}
+      {{resource.createdAt | date:'MMMM d, yyyy'}}
       <my-vote></my-vote>
     </md-card-content>
   </md-card>
