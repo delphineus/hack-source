@@ -1,7 +1,9 @@
 angular.module('hackSource.cards', [])
 .controller('cardsCtrl', function($scope, Data, Resources) {
-  $scope.data = Data.data;
-  $scope.testGet = Resources.getAllResources();
+  $scope.data = {};
+  console.log('data ', Data.data)
+  Resources.getAllResources()
+  .then(function(data) { $scope.data = data; });
   $scope.test = {testing: 'hi'};
 })
 .directive('myCard', function() {

@@ -1,4 +1,5 @@
 angular.module('hackSource', [
+
   'ngMaterial',
   'hackSource.services',
   'hackSource.cards',

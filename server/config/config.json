@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "",
+    "username": "alexrosenthal",
     "password": null,
-    "database": "greenfield-dev",
+    "database": "greenfield",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
