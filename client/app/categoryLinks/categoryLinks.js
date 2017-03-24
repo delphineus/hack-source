@@ -35,6 +35,7 @@ angular.module('hackSource.categoryLinks', [])
   return {
     // restrict: 'E',
     templateUrl: 'app/categoryLinks/categoryLinks.html',
-    controller: 'CatLinksCtrl'
+    controller: 'CatLinksCtrl',
+    replace: true
   };
 });
