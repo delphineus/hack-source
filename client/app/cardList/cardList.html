@@ -1,3 +1,17 @@
 <div ng-controller="cardListCtrl">
+  <div layout="row">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button ng-click="sortBy('Likes.length')">POPULARITY
+          <span ng-show="sortType == 'Likes.length' && sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'Likes.length' && !sortReverse" class="fa fa-caret-up"></span>
+        </md-button>
+        <md-button ng-click="sortBy('createdAt')">MOST RECENT
+          <span ng-show="sortType == 'createdAt' && sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'createdAt' && !sortReverse" class="fa fa-caret-up"></span>
+        </md-button>
+      </div>
+    </md-toolbar>
+  </div>
   <my-card></my-card>
 </div>
