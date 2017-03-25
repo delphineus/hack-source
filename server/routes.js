@@ -5,7 +5,8 @@ var userController = require('./controllers/userController.js');
 
 // resources
 router.get('/resources', resourceController.getResources);
-router.post('/resources', resourceController.postResource); // [x - update w/ session info]
+router.post('/resources', resourceController.postResource);
+router.post('/opengraph', resourceController.getOpenGraph);
 
 router.post('/likes', resourceController.postLike);
 router.get('/bookmarks', resourceController.getBookmarks);

@@ -1,3 +1,4 @@
+var openGraph = require('open-graph');
 var Resource = require('../models').Resource;
 var User = require('../models').User;
 var Like = require('../models').Like;
@@ -20,6 +21,16 @@ module.exports = {
     })
     .then(function(resources) {
       res.send(resources);
+    });
+  },
+
+  getOpenGraph: function(req, res) {
+    openGraph(req.body.url, function(err, meta) {
+      if (err) {
+        console.error(err);
+      } else {
+        res.send(meta);
+      }
     });
   },
 
@@ -74,7 +85,6 @@ module.exports = {
       UserId: req.body.userId
     })
     .then(function(newLike) {
-      console.log('newLike  --------', newLike)
       res.send(newLike);
     })
     .catch(function(err) {
