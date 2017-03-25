@@ -2,7 +2,7 @@
   <md-card
     md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
     md-theme-watch
-    ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:selectedCat'>
+    ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:search.category | filterByTag:search.tag'>
     <md-card-title>
       <md-card-title-text>
         <span class="md-headline">{{resource.title}}</span>
