@@ -36,10 +36,22 @@ angular.module('hackSource.services', [])
     });
   };
 
+  // GET popular Tags
+  var getPopularTags = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/most-popular-tags'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
   return {
     getAllResources: getAllResources,
     getAllCategories: getAllCategories,
-    getAllTags: getAllTags
+    getAllTags: getAllTags,
+    getPopularTags: getPopularTags
   };
 })
 .factory('counter', function() {
