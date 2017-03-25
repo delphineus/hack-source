@@ -17,29 +17,24 @@
           <md-content class="md-padding">
             <md-input-container class="md-block">
                <label>Enter URL</label>
-               <input type="url" ng-model="tUrl">
+               <input type="url" ng-model="url">
             </md-input-container>
           </md-content>
         </md-tab>
 
         <md-tab label="2. INFO" ng-disabled="true">
           <md-content class="md-padding">
-            <p>Click any section to edit</p>
-            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-              <md-card-title>
-                <md-card-title-text>
-                  <span class="md-headline">{{ metaData.title }}</span>
-                  <span class="md-subhead">{{ metaData.subhead }}</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                  <div class="md-media-lg card-media"></div>
-                </md-card-title-media>
-              </md-card-title>
-              <md-card-actions layout="row" layout-align="end center">
-                <md-button>Action 1</md-button>
-                <md-button>Action 2</md-button>
-              </md-card-actions>
-            </md-card>
+
+            <md-input-container class="md-block">
+              <label>Title</label>
+              <input type="text" md-select-on-focus ng-model="metaData.title">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Summary</label>
+              <input type="text" md-select-on-focus ng-model="metaData.summary">
+            </md-input-container>
+
           </md-content>
         </md-tab>
 
@@ -48,9 +43,10 @@
             <md-input-container class="md-block">
               <label>Category</label>
               <md-select ng-model="categories">
-                <md-option ng-repeat="category in categories" ng-value="category.title">
+  <!--               <md-option ng-repeat="category in categories" ng-value="category.title">
                   {{ category.title }}
-                </md-option>
+                </md-option> -->
+                <!-- Test data -->
                 <md-option ng-value="Backbone">Backbone</md-option>
                 <md-option ng-value="Backbone">Backbone</md-option>
                 <md-option ng-value="Backbone">Backbone</md-option>
@@ -58,8 +54,8 @@
             </md-input-container>
 
             <md-input-container class="md-block">
-              <label>Tags</label>
-              <textarea md-select-on-focus></textarea>
+              <label>Tags (seperate mulitple tags by spaces)</label>
+              <input type="text" md-select-on-focus ng-model="tags">
             </md-input-container>
           </md-content>
         </md-tab>
@@ -71,8 +67,8 @@
         PREVIOUS
       </md-button>
       <span flex></span>
-      <md-button ng-disabled="!tUrl || selectedTab === 2" ng-click="nextTab(tUrl)" style="margin-right:20px;">
-        NEXT
+      <md-button class="md-primary md-raised" ng-disabled="!url" ng-click="nextTab(url, tags, metaData.title, metaData.summary)" style="margin-right:20px;">
+        {{ buttonText }}
       </md-button>
     </md-dialog-actions>
   </form>
