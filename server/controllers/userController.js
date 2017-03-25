@@ -1,19 +1,17 @@
 var User = require('../models').User;
 
 module.exports = {
-  checkAuth: function(req, res) {
-    res.send('Im Working');
+
+  checkAuthCallback: function(req, res) {
+    res.redirect('/logged-in');
   },
 
   login: function(req, res) {
-    res.send('Im Working');
+    res.send('Please login.'); // TODO send to Angular login view
   },
 
   logout: function(req, res) {
-    res.send('Im Working');
-  },
-
-  signup: function(req, res) {
-    res.send('Im Working');
+    req.logout();
+    res.redirect('/api/login');
   }
 };

@@ -32,7 +32,6 @@ angular.module('hackSource.addResource', ['ngMaterial'])
         getMeta(url);
       } else if ($scope.selectedTab === 1) {
         $scope.buttonText = 'SUBMIT';
-        console.log(title);
       } else {
         if (tags) { tags = tags.split(' '); }
         console.log($scope.metaData);
@@ -45,7 +44,6 @@ angular.module('hackSource.addResource', ['ngMaterial'])
       $scope.selectedTab++;
     };
 
-    $scope.metaData = {};
     getMeta = function(url) {
       return Services.getMetaDataFor(url)
         .then(function(meta) {
@@ -64,9 +62,10 @@ angular.module('hackSource.addResource', ['ngMaterial'])
     };
 
     var getCategories = function() {
-      Services.getAll()
+      Services.getCategories()
         .then(function(categories) {
           $scope.categories = categories;
+          console.log($scope.categories);
         });
     };
     getCategories();
@@ -87,13 +86,14 @@ angular.module('hackSource.addResource', ['ngMaterial'])
 })
 
 .factory('Services', function($http) {
-  var getAll = function() {
+  var getCategories = function() {
     return $http({
       method: 'GET',
       url: '/api/categories'
     })
     .then(function(resp) {
       return resp.data;
+      console.log(resp.data);
     });
   };
 
@@ -102,7 +102,8 @@ angular.module('hackSource.addResource', ['ngMaterial'])
       method: 'POST',
       url: '/api/opengraph',
       data: JSON.stringify(data)
-    }).then(function(resp) {
+    })
+    .then(function(resp) {
       return resp.data;
     });
   };
@@ -117,16 +118,15 @@ angular.module('hackSource.addResource', ['ngMaterial'])
   };
 
   var postTags = function(tags) {
-    console.log('You dont have a route to post tags.');
-    // $http({
-    //   method: 'POST',
-    //   url: '/api/tags',
-    //   data: JSON.stringify(tags)
-    // });
+    $http({
+      method: 'POST',
+      url: '/api/tags',
+      data: JSON.stringify(tags)
+    });
   };
 
   return {
-    getAll: getAll,
+    getCategories: getCategories,
     getMetaDataFor: getMetaDataFor,
     postResource: postResource,
     postTags: postTags
