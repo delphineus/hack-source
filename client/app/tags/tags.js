@@ -2,7 +2,7 @@ angular.module('hackSource.tags', [])
 .controller('TagsCtrl', function($scope, Data) {
 
   var initializeTags = function () {
-    Data.getAllTags()
+    Data.getPopularTags()
       .then(function (tags) {
         $scope.taglist = tags;
       })
