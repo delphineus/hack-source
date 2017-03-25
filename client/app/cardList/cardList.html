@@ -1,6 +1,6 @@
 <div ng-controller="cardListCtrl">
-  <div layout="row">
-    <md-toolbar>
+  <div layout="row" layout-xs="column">
+    <md-toolbar md-colors="::{background: 'grey-300'}">
       <div class="md-toolbar-tools">
         <md-button ng-click="sortBy('Likes.length')">POPULARITY
           <span ng-show="sortType == 'Likes.length' && sortReverse" class="fa fa-caret-down"></span>
@@ -10,9 +10,34 @@
           <span ng-show="sortType == 'createdAt' && sortReverse" class="fa fa-caret-down"></span>
           <span ng-show="sortType == 'createdAt' && !sortReverse" class="fa fa-caret-up"></span>
         </md-button>
-        <catlinks></catlinks>
       </div>
     </md-toolbar>
   </div>
-  <my-card></my-card>
+
+  <!-- MAIN CONTENT -->
+  <div layout="row">
+
+    <!-- RESOURCE LIST -->
+    <md-content flex="66">
+      <my-card></my-card>
+    </md-content>
+
+    <!-- SIDEBAR -->
+    <md-sidenav
+      md-is-locked-open="true"
+      class="md-whiteframe-4dp"
+      layout-padding
+      flex="33">
+
+      <!-- CATEGORIES -->
+      <md-subheader class="md-warn">CATEGORIES</md-subheader>
+      <catlinks></catlinks>
+
+      <md-divider></md-divider>
+
+      <!-- TAGS -->
+      <md-subheader class="md-warn">TAGS</md-subheader>
+      <tag-list></tag-list>
+    </md-sidenav>
+  </div>
 </div>
