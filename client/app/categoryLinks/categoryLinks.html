@@ -1,6 +1,12 @@
-<md-input-container>
-  <md-select ng-model="selectedCat" placeholder="Select category" class="md-no-underline">
-    <md-option ng-value="$" md-option-empty>all</md-option>
-    <md-option ng-value="category.title" ng-repeat="category in categories">{{category.title}}</md-option>
-  </md-select>
-</md-input-container>
+<md-list ng-controller="CatLinksCtrl" layout="column">
+  <md-list-item ng-repeat="category in categories">
+    <md-button
+      ng-class="{'md-warn': search.category === category.title}"
+      ng-click="setSearchCat(category.title)">
+      {{category.title}}
+    </md-button>
+  </md-list-item>
+  <md-list-item>
+    <md-button ng-show="search.category" ng-click="setSearchCat()">Reset</md-button>
+  </md-list-item>
+</md-list>
