@@ -1,25 +1,8 @@
 angular.module('hackSource.categoryLinks', [])
-.factory('Cats', function($http) {
-
-  var getAllCats = function () {
-    return $http({
-      method: 'GET',
-      url: '/api/categories'
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
-
-  return {
-    getAllCats: getAllCats
-  };
-
-})
-.controller('CatLinksCtrl', function($scope, Cats) {
+.controller('CatLinksCtrl', function($scope, Data) {
 
   var initializeCats = function () {
-    Cats.getAllCats()
+    Data.getAllCategories()
       .then(function (cats) {
         $scope.categories = cats;
       })
@@ -33,7 +16,7 @@ angular.module('hackSource.categoryLinks', [])
 })
 .directive('catlinks', function() {
   return {
-    // restrict: 'E',
+    restrict: 'E',
     templateUrl: 'app/categoryLinks/categoryLinks.html',
     controller: 'CatLinksCtrl',
     replace: true
