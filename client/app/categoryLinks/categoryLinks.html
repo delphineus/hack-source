@@ -1,12 +1,17 @@
-<md-list ng-controller="CatLinksCtrl" layout="column">
-  <md-list-item ng-repeat="category in categories">
-    <md-button
-      ng-class="{'md-warn': search.category === category.title}"
-      ng-click="setSearchCat(category.title)">
-      {{category.title}}
-    </md-button>
-  </md-list-item>
-  <md-list-item>
-    <md-button ng-show="search.category" ng-click="setSearchCat()">Reset</md-button>
-  </md-list-item>
-</md-list>
+<md-content>
+  <md-list ng-controller="CatLinksCtrl" layout="column">
+    <md-list-item ng-repeat="category in categories">
+      <md-button
+        ng-class="{'md-warn': search.category === category.title}"
+        ng-click="setSearchCat(category.title)">
+        {{category.title}}
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button
+        ng-show="search.category"
+        ng-click="setSearchCat()"
+        class="md-warn md-raised">Reset</md-button>
+    </md-list-item>
+  </md-list>
+</md-content>
