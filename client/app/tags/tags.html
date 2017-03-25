@@ -1,0 +1,10 @@
+<md-input-container>
+  <md-select
+    ng-model="selectedTag"
+    ng-change="setSearchTag(selectedTag)"
+    placeholder="Select tag"
+    class="md-no-underline">
+    <md-option md-option-empty>all</md-option>
+    <md-option ng-value="tag" ng-repeat="tag in taglist">{{tag.title}}</md-option>
+  </md-select>
+</md-input-container>
