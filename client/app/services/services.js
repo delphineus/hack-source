@@ -284,4 +284,27 @@ angular.module('hackSource.services', [])
     }
     return filtered;
   };
+})
+.filter('filterByTag', function () {
+  return function (items, searchTag) {
+    var filtered = [];
+
+    if (!searchTag) {
+      return items;
+    }
+
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var itemTags = [];
+
+      item.Tags.forEach(function(tag) {
+        itemTags.push(tag.title);
+      });
+
+      if (itemTags.indexOf(searchTag) !== -1) {
+        filtered.push(item);
+      }
+    }
+    return filtered;
+  };
 });
