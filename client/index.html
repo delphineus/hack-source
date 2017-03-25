@@ -11,25 +11,19 @@
 </head>
 <body layout="column" ng-app="hackSource">
   <!-- Container 1 -->
-  <md-toolbar layout="row" class="md-toolbar-tools">
-    <div flex="15">
-      <h1>Delphinus</h1>
-    </div>
-    <div flex="40">
-      <md-content layout="row" layout-xs="row">
-        <md-input-container layout="row" layout-xs="row">
-          <label>Search categories/tags</label>
-          <input>
-        </md-input-container>
-      </md-content>
-    </div>
-    <div flex="20">
-      <md-button class="md-raised">
-        Add Resource
-      </md-button>
-    </div>
-    <div>
-      <login></login>
+  <md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+      <div flex="25">
+        <h1>Delphinus</h1>
+      </div>
+      <div flex="75" layout-align="end center" layout="row">
+        <md-button class="md-raised">
+          Add Resource
+        </md-button>
+      </div>
+      <div>
+        <login></login>
+      </div>
     </div>
   </md-toolbar>
 
@@ -38,10 +32,11 @@
 
     <!-- Container 4 -->
     <md-content flex id="content">
-      <!-- Resource list item -->
 
-      <!-- Card List Directive -->
+      <!-- CARD LIST -->
       <my-card-list></my-card-list>
+
+    </md-content>
 
   </div>
 
@@ -58,6 +53,7 @@
 
   <!-- Application script -->
   <script src="app/vote/vote.js"></script>
+  <script src="app/sortList/sortList.js"></script>
   <script src="app/tags/tags.js"></script>
   <script src="app/categoryLinks/categoryLinks.js"></script>
   <script src="app/cardList/cardList.js"></script>
