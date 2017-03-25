@@ -47,14 +47,20 @@ angular.module('hackSource.addResource', ['ngMaterial'])
 
     $scope.metaData = {};
     getMeta = function(url) {
+      return Services.getMetaDataFor(url)
+        .then(function(meta) {
+          console.log(meta);
+          $scope.metaData = meta;
+        });
+
       // temp data
-      $scope.metaData = {
-        url: url,
-        title: 'Google',
-        imgUrl: 'https://s-media-cache-ak0.pinimg.com/736x/96/50/6d/96506d603d8f742793fb9a38021ca3a6.jpg',
-        summary: 'You know what Google is',
-        UserId: 1
-      };
+      // $scope.metaData = {
+      //   url: url,
+      //   title: 'Google',
+      //   imgUrl: 'https://s-media-cache-ak0.pinimg.com/736x/96/50/6d/96506d603d8f742793fb9a38021ca3a6.jpg',
+      //   summary: 'You know what Google is',
+      //   UserId: 1
+      // };
     };
 
     var getCategories = function() {
@@ -87,7 +93,16 @@ angular.module('hackSource.addResource', ['ngMaterial'])
       url: '/api/categories'
     })
     .then(function(resp) {
-      console.log(resp.data);
+      return resp.data;
+    });
+  };
+
+  var getMetaDataFor = function(data) {
+    return $http({
+      method: 'POST',
+      url: '/api/opengraph',
+      data: JSON.stringify(data)
+    }).then(function(resp) {
       return resp.data;
     });
   };
@@ -112,6 +127,7 @@ angular.module('hackSource.addResource', ['ngMaterial'])
 
   return {
     getAll: getAll,
+    getMetaDataFor: getMetaDataFor,
     postResource: postResource,
     postTags: postTags
   };
