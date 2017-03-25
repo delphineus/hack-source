@@ -8,7 +8,6 @@ angular.module('hackSource', [
   'hackSource.sortList',
   'hackSource.addResource',
   'hackSource.vote',
-  'hackSource.addResource',
   'ngMaterial'
 ])
 .run(function() {
