@@ -10,7 +10,7 @@ angular.module('hackSource.addResource', ['ngMaterial'])
     }
   });
 
-  var DialogController = function($scope, $mdDialog, $window, Services) {
+  var DialogController = function($scope, $mdDialog, $window, Data, User) {
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -43,45 +43,44 @@ angular.module('hackSource.addResource', ['ngMaterial'])
       } else {
         if (tags) { tags = tags.split(' '); }
 
-        Services.postResource($scope.metaData);
-        Services.postTags(tags);
+        Data.postResource($scope.data);
+        Data.postTags(tags);
         $scope.finish();
       }
       $scope.selectedTab++;
     };
 
     getMeta = function(url) {
-      // temp data
-      $scope.metaData = {
+      $scope.data = {
         url: url,
-        title: '',
         imgUrl: 'https://i.stack.imgur.com/Mmww2.png',
-        summary: '',
-        UserId: 1
+        category: ''
       };
 
-      return Services.getMetaDataFor(url)
+      User.checkLoggedIn().then(function(user) {
+        $scope.data.UserId = user.user.id;
+      });
+
+      return Data.getMetaDataFor({url: url})
         .then(function(meta) {
           console.log(meta);
-          $scope.metaData = meta;
+          $scope.data.title = meta.title;
+          $scope.data.summary = meta.description;
+          if (meta.image) {
+            if (Array.isArray(meta.image.url)) {
+              $scope.data.imgUrl = meta.image.url[meta.image.url.length - 1];
+            } else {
+              $scope.data.imgUrl = meta.image.url;
+            }
+          }
         });
     };
 
     var getCategories = function() {
-      $scope.selectedCategory = '';
-      $scope.categories = [
-        { title: 'Front End'},
-        { title: 'Back End'},
-        { title: 'CSS'},
-        { title: 'HTML'},
-        { title: 'General'}
-      ];
-
-      // Services.getCategories()
-      //   .then(function(categories) {
-      //     $scope.categories = categories;
-      //     console.log($scope.categories);
-      //   });
+      Data.getAllCategories()
+        .then(function(categories) {
+          $scope.categories = categories;
+        });
     };
     getCategories();
   };
@@ -110,55 +109,5 @@ angular.module('hackSource.addResource', ['ngMaterial'])
           .targetEvent(ev)
       );
     }
-  };
-})
-
-.factory('Services', function($http) {
-  var getCategories = function() {
-    return $http({
-      method: 'GET',
-      url: '/api/categories'
-    })
-    .then(function(resp) {
-      return resp.data;
-      console.log(resp.data);
-    });
-  };
-
-  var getMetaDataFor = function(data) {
-    return $http({
-      method: 'POST',
-      url: '/api/opengraph',
-      data: JSON.stringify(data)
-    })
-    .then(function(resp) {
-      return resp.data;
-    });
-  };
-
-  var postResource = function(data) {
-    console.log('Posting resource.');
-    $http({
-      method: 'POST',
-      url: '/api/resources',
-      data: JSON.stringify(data)
-    });
-  };
-
-  var postTags = function(tags) {
-    tags.forEach((tag) => {
-      $http({
-        method: 'POST',
-        url: '/api/tags',
-        data: JSON.stringify(tag)
-      });
-    });
-  };
-
-  return {
-    getCategories: getCategories,
-    getMetaDataFor: getMetaDataFor,
-    postResource: postResource,
-    postTags: postTags
   };
 });

@@ -27,12 +27,12 @@
 
             <md-input-container class="md-block">
               <label>Title</label>
-              <input type="text" md-select-on-focus ng-model="metaData.title">
+              <input type="text" md-select-on-focus ng-model="data.title">
             </md-input-container>
 
             <md-input-container class="md-block">
               <label>Summary</label>
-              <input type="text" md-select-on-focus ng-model="metaData.summary">
+              <input type="text" md-select-on-focus ng-model="data.summary">
             </md-input-container>
 
           </md-content>
@@ -42,7 +42,7 @@
           <md-content class="md-padding">
             <md-input-container class="md-block">
               <label>Category</label>
-              <md-select ng-model="selectedCategory">
+              <md-select ng-model="data.category">
                 <md-option ng-repeat="category in categories" ng-value="category.title">
                   {{ category.title }}
                 </md-option>
