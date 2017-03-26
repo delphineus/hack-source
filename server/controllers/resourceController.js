@@ -25,7 +25,6 @@ module.exports = {
   },
 
   getOpenGraph: function(req, res) {
-    console.log(req.body.url);
     openGraph(req.body.url, function(err, meta) {
       if (err) {
         console.error(err);
@@ -36,24 +35,54 @@ module.exports = {
   },
 
   postResource: function(req, res) {
-    Resource.create({
-      url: req.body.url,
-      title: req.body.title,
-      imgUrl: req.body.imgUrl,
-      summary: req.body.summary,
-      UserId: req.body.UserId
-    })
-    .then(function(newResource) {
-      Category.findOne({
-        where: { title: req.body.category }
-      })
-      .then(function(category) {
-        ResourceCategory.create({
-          ResourceId: newResource.id,
-          CategoryId: category.id
+    var currentTagTitles = [];
+    var tagsToCreate = [];
+    Tag.findAll()
+    .then(function(tags) {
+      currentTagTitles = tags.map(tag => tag.title);
+      req.body.tags.forEach(tag => {
+        if (!currentTagTitles.includes(tag)) {
+          tagsToCreate.push({ title: tag });
+        }
+      });
+      Tag.bulkCreate(tagsToCreate)
+      .then(function(newTags) {
+        Resource.create({
+          url: req.body.url,
+          title: req.body.title,
+          imgUrl: req.body.imgUrl,
+          summary: req.body.summary,
+          UserId: req.body.UserId
         })
-        .then(function(resourceCategory) {
-          res.send(newResource);
+        .then(function(newResource) {
+          Category.findOne({
+            where: { title: req.body.category }
+          })
+          .then(function(category) {
+            ResourceCategory.create({
+              ResourceId: newResource.id,
+              CategoryId: category.id
+            })
+            .then(function(resourceCategory) {
+              Tag.findAll({
+                where: {
+                  title: {
+                    $in: req.body.tags
+                  }
+                }
+              })
+              .then(function(foundTags) {
+                var tagData = foundTags.map(tag => {
+                  return { ResourceId: newResource.id, TagId: tag.id };
+                });
+                ResourceTag.bulkCreate(tagData)
+                .then(function(resourceTag) {
+                  console.log(resourceTag);
+                  res.send(newResource);
+                });
+              });
+            });
+          });
         });
       });
     })
@@ -62,62 +91,6 @@ module.exports = {
       console.log(err);
     });
   },
-
-  // postResource: function(req, res) {
-  //   console.log('HELLO!!!', req.body);
-  //   // var categoryIds = [];
-  //   var tagIds = [];
-  //   Resource.create({
-  //     url: req.body.url,
-  //     title: req.body.title,
-  //     imgUrl: req.body.imgUrl,
-  //     summary: req.body.summary,
-  //     UserId: req.body.UserId
-  //   })
-  //   .then(function(newResource) {
-  //     Category.findOne({
-  //       where: { title: req.body.category }
-  //     })
-  //     .then(function(category) {
-  //       ResourceCategory.create({
-  //         ResourceId: newResource.id,
-  //         CategoryId: category.id
-  //       })
-  //       .then(function(resourceCategory) {
-  //         res.send(newResource);
-  //       })
-  //     })
-  //     .catch(function(err) {
-  //       res.send(err);
-  //       console.error(err);
-  //     })
-  //   },
-      // .then(function(categories) {
-      //   categories.forEach(category => categoryIds.push({ ResourceId: newResource.id, CategoryId: category.id }));
-      //   Tag.findAll({
-      //     where: {
-      //       title: {
-      //         $in: JSON.parse(req.body.tags) // TODO shouldn't need to parse when getting data from site
-      //       }
-      //     }
-      //   })
-    //     .then(function(tags) {
-    //       tags.forEach(tag => tagIds.push({ ResourceId: newResource.id, TagId: tag.id }));
-    //       ResourceCategory.bulkCreate(categoryIds)
-    //       .then(function(resourceCats) {
-    //         ResourceTag.bulkCreate(tagIds)
-    //         .then(function(resourceTags) {
-    //           res.send(newResource);
-    //         });
-    //       });
-    //     });
-    //   });
-    // })
-    // .catch(function(err) {
-    //   res.send(err);
-    //   console.error(err);
-    // });
-  // },
 
   postLike: function(req, res) {
     Like.create({
