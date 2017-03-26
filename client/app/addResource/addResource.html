@@ -1,0 +1,71 @@
+  <md-dialog aria-label="Share your resource">
+  <form name=resourceForm>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Share your resource</h2>
+        <span flex></span>
+        <md-button ng-click="cancel()">
+          cancel
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content style="width:650px;max-height:650px; ">
+      <md-tabs md-selected="selectedTab" md-dynamic-height md-border-bottom>
+
+        <md-tab label="1. LINK" ng-disabled="true">
+          <md-content class="md-padding">
+            <md-input-container class="md-block">
+               <label>Enter URL</label>
+               <input type="url" ng-model="url">
+            </md-input-container>
+          </md-content>
+        </md-tab>
+
+        <md-tab label="2. INFO" ng-disabled="true">
+          <md-content class="md-padding">
+
+            <md-input-container class="md-block">
+              <label>Title</label>
+              <input type="text" md-select-on-focus ng-model="metaData.title">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Summary</label>
+              <input type="text" md-select-on-focus ng-model="metaData.summary">
+            </md-input-container>
+
+          </md-content>
+        </md-tab>
+
+        <md-tab label="3. Category" ng-disabled="true">
+          <md-content class="md-padding">
+            <md-input-container class="md-block">
+              <label>Category</label>
+              <md-select ng-model="selectedCategory">
+                <md-option ng-repeat="category in categories" ng-value="category.title">
+                  {{ category.title }}
+                </md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Tags (seperate mulitple tags by spaces)</label>
+              <input type="text" md-select-on-focus ng-model="tags">
+            </md-input-container>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-disabled="selectedTab === 0" ng-click="prevTab()">
+        PREVIOUS
+      </md-button>
+      <span flex></span>
+      <md-button class="md-primary md-raised" ng-disabled="!url" ng-click="nextTab(url, tags, metaData.title, metaData.summary)" style="margin-right:20px;">
+        {{ buttonText }}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

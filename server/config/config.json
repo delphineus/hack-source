@@ -2,7 +2,7 @@
   "development": {
     "username": "",
     "password": null,
-    "database": "greenfield-dev",
+    "database": "delphinusdb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
@@ -14,6 +14,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable": "DATABASE_URL"
+    "use_env_variable": "DATABASE_URL",
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   }
 }
