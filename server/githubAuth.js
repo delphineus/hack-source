@@ -4,9 +4,10 @@ var GITHUB = require('./config/github-config.js');
 var User = require('./models').User;
 
 module.exports = passport.use(new GitHubStrategy({
-  clientID: GITHUB.clientID,
-  clientSecret: GITHUB.clientSecret,
-  callbackURL: GITHUB.callbackURL
+  clientID: process.env.GITHUB_ID || GITHUB.clientID,
+  clientSecret: process.env.GITHUB_SECRET || GITHUB.clientSecret,
+  // callbackURL: GITHUB.callbackURL
+  callbackURL: 'http://127.0.0.1:3000/auth/github/callback'
 },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({
