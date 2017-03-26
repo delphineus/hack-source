@@ -42,8 +42,6 @@ angular.module('hackSource.addResource', ['ngMaterial'])
         $scope.buttonText = 'SUBMIT';
       } else {
         if (tags) { tags = tags.split(' '); }
-        console.log($scope.metaData);
-        console.log(tags);
 
         Services.postResource($scope.metaData);
         Services.postTags(tags);
@@ -70,6 +68,7 @@ angular.module('hackSource.addResource', ['ngMaterial'])
     };
 
     var getCategories = function() {
+      $scope.selectedCategory = '';
       $scope.categories = [
         { title: 'Front End'},
         { title: 'Back End'},
@@ -147,10 +146,12 @@ angular.module('hackSource.addResource', ['ngMaterial'])
   };
 
   var postTags = function(tags) {
-    $http({
-      method: 'POST',
-      url: '/api/tags',
-      data: JSON.stringify(tags)
+    tags.forEach((tag) => {
+      $http({
+        method: 'POST',
+        url: '/api/tags',
+        data: JSON.stringify(tag)
+      });
     });
   };
 
