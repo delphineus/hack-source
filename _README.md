@@ -4,7 +4,7 @@ HackSource: the hacker's library.
 
 ## Team
 
-  - __Product Owner__: Emelie Hester
+  - __Product Owner__: Emilie Hester
   - __Scrum Master__: Nate Nault
   - __Development Team Members__: Max Berger, Vandeth Nop, Alex Rosenthal
 
