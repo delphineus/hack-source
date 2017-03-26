@@ -1,9 +1,16 @@
 angular.module('hackSource.addResource', ['ngMaterial'])
 
-.controller('AddResourceController', function($scope, $mdDialog) {
+.controller('AddResourceController', function($scope, $mdDialog, User) {
   $scope.customFullscreen = false;
 
-  var DialogController = function($scope, $mdDialog, Services) {
+  $scope.loggedIn = false;
+  User.checkLoggedIn().then(function(user) {
+    if (user.user.id !== undefined) {
+      $scope.loggedIn = true;
+    }
+  });
+
+  var DialogController = function($scope, $mdDialog, $window, Services) {
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -14,6 +21,7 @@ angular.module('hackSource.addResource', ['ngMaterial'])
 
     $scope.finish = function() {
       $mdDialog.hide();
+      $window.location.reload();
     };
 
     $scope.selectedTab = 0;
@@ -45,43 +53,64 @@ angular.module('hackSource.addResource', ['ngMaterial'])
     };
 
     getMeta = function(url) {
+      // temp data
+      $scope.metaData = {
+        url: url,
+        title: '',
+        imgUrl: 'https://i.stack.imgur.com/Mmww2.png',
+        summary: '',
+        UserId: 1
+      };
+
       return Services.getMetaDataFor(url)
         .then(function(meta) {
           console.log(meta);
           $scope.metaData = meta;
         });
-
-      // temp data
-      // $scope.metaData = {
-      //   url: url,
-      //   title: 'Google',
-      //   imgUrl: 'https://s-media-cache-ak0.pinimg.com/736x/96/50/6d/96506d603d8f742793fb9a38021ca3a6.jpg',
-      //   summary: 'You know what Google is',
-      //   UserId: 1
-      // };
     };
 
     var getCategories = function() {
-      Services.getCategories()
-        .then(function(categories) {
-          $scope.categories = categories;
-          console.log($scope.categories);
-        });
+      $scope.categories = [
+        { title: 'Front End'},
+        { title: 'Back End'},
+        { title: 'CSS'},
+        { title: 'HTML'},
+        { title: 'General'}
+      ];
+
+      // Services.getCategories()
+      //   .then(function(categories) {
+      //     $scope.categories = categories;
+      //     console.log($scope.categories);
+      //   });
     };
     getCategories();
   };
 
 
-  $scope.showLinkTab = function(ev) {
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: 'app/addResource/addResource.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-    })
-    .then(function() {}, function() {
-      console.log('You chose wrong');
-    });
+  $scope.showResourceForm = function(ev) {
+    if ($scope.loggedIn) {
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'app/addResource/addResource.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+      })
+      .then(function() {}, function() {
+        console.log('You chose wrong');
+      });
+    } else {
+      $mdDialog.show(
+        $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('You are not logged in')
+          .textContent('Please log in to post your resource.')
+          .ariaLabel('Please log in')
+          .ok('Got it!')
+          .targetEvent(ev)
+      );
+    }
   };
 })
 
