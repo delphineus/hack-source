@@ -28,7 +28,7 @@ angular.module('hackSource.vote', [])
 .controller('VoteCtrl', function($scope, counter, User) {
 	var userId;
 	var resourceId = $scope.resource.id
-	User.checkLoggedIn().then(function(user) { 
+	User.checkLoggedIn().then(function(user) {
 		if (user.user.id === undefined) {
 			$scope.flagVariable = true;
 		};
@@ -57,7 +57,7 @@ angular.module('hackSource.vote', [])
 		// },
 		templateUrl: 'app/vote/vote.html',
 		controller: 'VoteCtrl'
-	}	
+	}
 });
 
 
