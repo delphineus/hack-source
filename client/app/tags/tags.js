@@ -1,25 +1,8 @@
 angular.module('hackSource.tags', [])
-.factory('Tags', function($http) {
-
-  var getAllTags = function () {
-    return $http({
-      method: 'GET',
-      url: '/api/tags'
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
-
-  return {
-    getAllTags: getAllTags
-  };
-
-})
-.controller('TagsCtrl', function($scope, Tags) {
+.controller('TagsCtrl', function($scope, Data) {
 
   var initializeTags = function () {
-    Tags.getAllTags()
+    Data.getPopularTags()
       .then(function (tags) {
         $scope.taglist = tags;
       })
@@ -33,7 +16,7 @@ angular.module('hackSource.tags', [])
 })
 .directive('tagList', function() {
   return {
-    // restrict: 'E',
+    restrict: 'E',
     templateUrl: 'app/tags/tags.html',
     controller: 'TagsCtrl',
     replace: true

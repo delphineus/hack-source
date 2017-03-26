@@ -9,11 +9,34 @@
       </md-card-title-text>
     </md-card-title>
     <md-card-content>
-      <img src={{resource.imgUrl}} width='300' height='150'>
-      {{resource.summary}}
-      <hr>
-      {{resource.createdAt | date:'MMMM d, yyyy'}}
-      <my-vote></my-vote>
+      <div layout="row" layout-xs="column">
+        <div flex-gt-xs="33" flex>
+          <img src="{{resource.imgUrl}}" width='300' height='150'>
+        </div>
+        <div flex-offset-gt-xs="5" flex-gt-xs="66" flex>
+          {{resource.summary}}
+        </div>
+      </div>
     </md-card-content>
+    <md-divider></md-divider>
+    <md-card-footer
+      layout="row"
+      layout-xs="column"
+      layout-align="space-between center">
+      <div>
+        {{resource.createdAt | date:'MMMM d, yyyy'}}
+      </div>
+      <div layout-align="end center">
+        <md-button
+          ng-href="{{resource.url}}"
+          title="{{resource.title}}"
+          target="_blank"
+          aria-label="{{resource.title}}"
+          class="md-raised md-primary">
+          View Resource
+        </md-button>
+        <my-vote></my-vote>
+      </div>
+    </md-card-footer>
   </md-card>
 </div>
