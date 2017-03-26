@@ -18,10 +18,6 @@ General idea/goals:
   - close after submit (maybe automatic feature)
   - submit confirmation (toast or notification)
   - make a query for new data and re-render
-  - assign resource category
-  - assign tag(s) to resource
-    - user may select existing tag
-    - user may add new tag
 
 
 - This will require use of Open Graph

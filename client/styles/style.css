@@ -1,6 +1,8 @@
-img {
-  height: auto;
-  max-width: 100%;
+.md-toolbar-tools h1.logo {
+  color: #333;
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: 0px;
 }
 
 .login-avatar-img {
@@ -9,4 +11,46 @@ img {
   padding: 3px;
   border-radius: 30px;
   float: left;
+}
+
+md-card.card-wrapper.ng-scope._md.md-default-theme {
+  display: inline-table;
+  width: 95%;
+  margin-left: 20px;
+}
+
+.card-image {
+  display: inline-block;
+  float: left;
+  width: 250px;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card-content {
+  display: inline-block;
+  margin-left: 20px;
+  width: 70%;
+  height: 200px;
+}
+
+.card-avatar {
+  float: left;
+  margin-top: 5px;
+  margin-right: 7px;
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
+}
+
+.card-post-data {
+  float: right;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+md-sidenav.md-locked-open, md-sidenav.md-locked-open-add, md-sidenav.md-locked-open-remove, md-sidenav.md-locked-open-remove.md-closed, md-sidenav.md-locked-open.md-closed, md-sidenav.md-locked-open.md-closed.md-sidenav-left, md-sidenav.md-locked-open.md-closed.md-sidenav-right {
+  margin-right: 15px;
 }

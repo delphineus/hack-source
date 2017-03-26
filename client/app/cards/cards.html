@@ -1,30 +1,21 @@
 <div ng-controller='cardsCtrl'>
-  <md-card
+  <md-card class="card-wrapper"
     md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
     md-theme-watch
     ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:search.category | filterByTag:search.tag'>
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">{{resource.title}}</span>
-      </md-card-title-text>
-    </md-card-title>
-    <md-card-content>
-      <div layout="row" layout-xs="column">
-        <div flex-gt-xs="33" flex>
-          <img src="{{resource.imgUrl}}" width='300' height='150'>
-        </div>
-        <div flex-offset-gt-xs="5" flex-gt-xs="66" flex>
-          {{resource.summary}}
-        </div>
-      </div>
-    </md-card-content>
+    <div class="card-image" ng-style="{'background-image': 'url({{resource.imgUrl}})'}"></div>
+    <div class="card-content">
+      <h2>{{resource.title}}</h2>
+      <p>{{resource.summary}}</p>
+    </div>
     <md-divider></md-divider>
     <md-card-footer
       layout="row"
       layout-xs="column"
       layout-align="space-between center">
       <div>
-        {{resource.createdAt | date:'MMMM d, yyyy'}}
+        <img class="card-avatar" ng-src={{resource.User.avatarUrl}} />
+        <span class="card-post-data">@{{resource.User.username}} | {{resource.createdAt | date:'MMMM d, yyyy'}}</span>
       </div>
       <div layout-align="end center">
         <md-button

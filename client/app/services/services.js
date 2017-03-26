@@ -47,11 +47,46 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var getMetaDataFor = function(data) {
+    return $http({
+      method: 'POST',
+      url: '/api/opengraph',
+      data: JSON.stringify(data)
+    })
+    .then(function(resp) {
+      console.log(resp);
+      return resp.data;
+    });
+  };
+
+  var postResource = function(data) {
+    console.log('Posting resource.');
+    $http({
+      method: 'POST',
+      url: '/api/resources',
+      data: JSON.stringify(data)
+    });
+  };
+
+  var postTags = function(tags) {
+    if (!tags) { return; }
+    tags.forEach((tag) => {
+      $http({
+        method: 'POST',
+        url: '/api/tags',
+        data: JSON.stringify({title: tag})
+      });
+    });
+  };
+
   return {
     getAllResources: getAllResources,
     getAllCategories: getAllCategories,
     getAllTags: getAllTags,
-    getPopularTags: getPopularTags
+    getPopularTags: getPopularTags,
+    getMetaDataFor: getMetaDataFor,
+    postResource: postResource,
+    postTags: postTags
   };
 })
 .factory('counter', function() {
