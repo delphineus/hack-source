@@ -3,21 +3,14 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Tags', [
-      {
-        title: 'angular',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        title: 'sequelize',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        title: 'bootstrap',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
+      { title: 'angular', createdAt: new Date(), updatedAt: new Date() },
+      { title: 'sequelize', createdAt: new Date(), updatedAt: new Date() },
+      { title: 'bootstrap', createdAt: new Date(), updatedAt: new Date() },
+      { title: 'material', createdAt: new Date(), updatedAt: new Date() },
+      { title: 'react', createdAt: new Date(), updatedAt: new Date() },
+      { title: 'node', createdAt: new Date(), updatedAt: new Date() },
+      { title: 'authentication', createdAt: new Date(), updatedAt: new Date() },
+      { title: 'backbone', createdAt: new Date(), updatedAt: new Date() }
     ], {});
   },
 
