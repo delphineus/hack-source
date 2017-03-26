@@ -25,7 +25,6 @@ module.exports = {
   },
 
   getOpenGraph: function(req, res) {
-    console.log(req.body.url);
     openGraph(req.body.url, function(err, meta) {
       if (err) {
         console.error(err);
