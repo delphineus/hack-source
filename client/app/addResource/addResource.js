@@ -41,10 +41,9 @@ angular.module('hackSource.addResource', ['ngMaterial'])
       } else if ($scope.selectedTab === 1) {
         $scope.buttonText = 'SUBMIT';
       } else {
-        if (tags) { tags = tags.split(' '); }
+        if (tags) { $scope.data.tags = tags.split(' '); }
 
         Data.postResource($scope.data);
-        Data.postTags(tags);
         $scope.finish();
       }
       $scope.selectedTab++;

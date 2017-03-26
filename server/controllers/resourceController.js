@@ -77,7 +77,6 @@ module.exports = {
                 });
                 ResourceTag.bulkCreate(tagData)
                 .then(function(resourceTag) {
-                  console.log(resourceTag);
                   res.send(newResource);
                 });
               });
