@@ -4,7 +4,6 @@
     md-theme-watch
     ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:search.category | filterByTag:search.tag'>
     <div class="card-image" ng-style="{'background-image': 'url({{resource.imgUrl}})'}"></div>
-    <!-- <img ng-src={{resource.imgUrl}} class="md-card-image"> -->
     <div class="card-content">
       <h2>{{resource.title}}</h2>
       <p>{{resource.summary}}</p>

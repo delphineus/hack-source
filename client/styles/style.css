@@ -33,6 +33,7 @@ md-card.card-wrapper.ng-scope._md.md-default-theme {
   display: inline-block;
   margin-left: 20px;
   width: 70%;
+  height: 200px;
 }
 
 .card-avatar {
