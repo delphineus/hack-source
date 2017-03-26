@@ -25,6 +25,7 @@ module.exports = {
   },
 
   getOpenGraph: function(req, res) {
+    console.log(req.body.url);
     openGraph(req.body.url, function(err, meta) {
       if (err) {
         console.error(err);
@@ -42,13 +43,13 @@ module.exports = {
       title: req.body.title,
       imgUrl: req.body.imgUrl,
       summary: req.body.summary,
-      UserId: 1 // TODO get UserId from SESSION -- req.user.id
+      UserId: req.body.UserId
     })
     .then(function(newResource) {
       Category.findAll({
         where: {
           title: {
-            $in: JSON.parse(req.body.categories) // TODO shouldn't need to parse when getting data from site
+            $in: JSON.parse(req.body.category) // TODO shouldn't need to parse when getting data from site
           }
         }
       })
