@@ -26,7 +26,7 @@ Visit http://glacial-inlet-40419.herokuapp.com/ and search for a term or keyword
 ### Contribute
 Signin with your github account and post new resources. Just enter the link and select the germane category from the category list. Thanks to the good people at OpenGraph, the resource appears in the virtual catalog as an information-rich object, with a title, thumbnail image and summary. Alternatively, you can provide this information yourself.
 
-Add custom tags to further categorize your resrouce.
+Add custom tags to further categorize your resource.
 
 Found something useful? Let others know by upvoting it.
 
