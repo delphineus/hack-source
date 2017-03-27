@@ -3,7 +3,8 @@ angular.module('hackSource.cardList', [])
 
   $scope.search = {
     category: '',
-    tag: ''
+    tag: '',
+    bar: ''
   };
 
   $scope.setSearchCat = function(category) {
@@ -11,7 +12,11 @@ angular.module('hackSource.cardList', [])
   };
 
   $scope.setSearchTag = function(tag) {
-    $scope.search.tag = tag.title;
+    $scope.search.tag = tag;
+  };
+
+  $scope.setSearchBar = function(search) {
+    $scope.search.bar = search;
   };
 
 })

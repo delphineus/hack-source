@@ -6,7 +6,7 @@
         ng-click="setSearchTag('')">all</span>
     </md-chip>
     <md-chip ng-repeat="tag in taglist">
-      <span ng-model="selectedTag" ng-click="setSearchTag(tag)">{{tag.title}}</span>
+      <span ng-model="selectedTag" ng-click="setSearchTag(tag.title)">{{tag.title}}</span>
     </md-chip>
   </md-chips>
 </md-content>

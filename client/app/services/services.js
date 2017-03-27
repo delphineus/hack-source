@@ -89,13 +89,6 @@ angular.module('hackSource.services', [])
     postTags: postTags
   };
 })
-.factory('counter', function() {
-  var count = 0;
-  var incrementer = function() {
-    count++;
-  };
-  return {incrementer: incrementer, count: count};
-})
 
 .filter('filterByCat', function () {
   return function (items, searchCat) {
@@ -137,6 +130,32 @@ angular.module('hackSource.services', [])
       });
 
       if (itemTags.indexOf(searchTag) !== -1) {
+        filtered.push(item);
+      }
+    }
+    return filtered;
+  };
+})
+.filter('filterBySearch', function () {
+  return function (items, searchBar) {
+    var filtered = [];
+
+    if (!searchBar) {
+      return items;
+    }
+
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var itemSearch = [];
+
+      item.Tags.forEach(function(tag) {
+        itemSearch.push(tag.title);
+      });
+      item.Categories.forEach(function(cat) {
+        itemSearch.push(cat.title);
+      });
+
+      if (itemSearch.indexOf(searchBar) !== -1) {
         filtered.push(item);
       }
     }
