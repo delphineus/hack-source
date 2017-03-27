@@ -4,7 +4,7 @@ angular.module('hackSource.sortList', [])
   // set the default sort type
   $scope.sortType = 'createdAt';
   // set the default sort order
-  $scope.sortReverse = false;
+  $scope.sortReverse = true;
 
   // Sort functionality
   $scope.sortBy = function(sortParam) {
