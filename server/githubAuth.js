@@ -4,10 +4,14 @@ var GITHUB = require('./config/github-config.js');
 var User = require('./models').User;
 
 module.exports = passport.use(new GitHubStrategy({
-  clientID: process.env.GITHUB_ID || GITHUB.clientID,
-  clientSecret: process.env.GITHUB_SECRET || GITHUB.clientSecret,
-  // callbackURL: GITHUB.callbackURL
-  callbackURL: 'http://127.0.0.1:3000/auth/github/callback'
+  clientID: GITHUB.clientID,
+  clientSecret: GITHUB.clientSecret,
+  callbackURL: GITHUB.callbackURL
+
+  /* DEPLOYMENT SETTINGS */
+  // clientID: process.env.GITHUB_ID,
+  // clientSecret: process.env.GITHUB_SECRET,
+  // callbackURL: 'http://glacial-inlet-40419.herokuapp.com/auth/github/callback'
 },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({

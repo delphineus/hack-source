@@ -97,7 +97,7 @@ angular.module('hackSource.services', [])
   var checkLoggedIn = function() {
     return $http({
       method: 'GET',
-      url: '/logged-in'
+      url: '/auth/logged-in'
     })
     .then(function(response) {
       if (response.data.user) {
