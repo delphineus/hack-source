@@ -28,8 +28,8 @@ angular.module('hackSource.vote', [])
 .controller('VoteCtrl', function($scope, counter, User) {
 	$scope.flagVariable = false;
 	var userId;
-	var resourceId = $scope.resource.id /**/
-	User.checkLoggedIn().then(function(user) { 
+	var resourceId = $scope.resource.id
+	User.checkLoggedIn().then(function(user) {
 		if (user.user.id === undefined) {
 			$scope.flagVariable = true;
 		};
@@ -37,8 +37,8 @@ angular.module('hackSource.vote', [])
 	.then(function() {
 		$scope.vote = $scope.resource.Likes.length;
 		if ($scope.resource.Likes.filter(like => like.UserId === userId).length > 0) {
-			$scope.flagVariable = true; 
-		}	
+			$scope.flagVariable = true;
+		}
 	});
 
 	$scope.upVote = function() {
@@ -54,7 +54,7 @@ angular.module('hackSource.vote', [])
 			.catch(function(err) {
 				console.log('error', err);
 			})
-		} 
+		}
 	}
 })
 
@@ -67,7 +67,7 @@ angular.module('hackSource.vote', [])
 		// },
 		templateUrl: 'app/vote/vote.html',
 		controller: 'VoteCtrl'
-	}	
+	}
 });
 
 

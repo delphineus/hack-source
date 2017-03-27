@@ -8,9 +8,9 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Like.belongsTo(models.Resource);
         Like.belongsTo(models.User);
+        // associations can be defined here
       }
     }
   });
-
   return Like;
 };
