@@ -90,6 +90,31 @@ angular.module('hackSource.services', [])
   };
 })
 
+.factory('User', function ($http) {
+  var user = {};
+  var isNoUser = true;
+
+  var checkLoggedIn = function() {
+    return $http({
+      method: 'GET',
+      url: '/logged-in'
+    })
+    .then(function(response) {
+      if (response.data.user) {
+        user = response.data.user;
+        isNoUser = false;
+      }
+      return {user: user, isNoUser: isNoUser};
+    });
+  };
+
+  return {
+    user: user,
+    isNoUser: isNoUser,
+    checkLoggedIn: checkLoggedIn
+  };
+})
+
 .filter('filterByCat', function () {
   return function (items, searchCat) {
     var filtered = [];
