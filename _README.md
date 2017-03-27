@@ -1,12 +1,12 @@
-# Project Name
+# HackSource
 
-> Pithy project description
+HackSource: the hacker's library.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Emilie Hester
+  - __Scrum Master__: Nate Nault
+  - __Development Team Members__: Max Berger, Vandeth Nop, Alex Rosenthal
 
 ## Table of Contents
 
@@ -20,15 +20,22 @@
 
 ## Usage
 
-> Some usage instructions
+### Research
+Visit http://glacial-inlet-40419.herokuapp.com/ and search for a term or keyword that describes the resource your interested in learning about. Sort resources by tag, category, date added, or by crowd sourced popularity.
+
+### Contribute
+Signin with your github account and post new resources. Just enter the link and select the germane category from the category list. Thanks to the good people at OpenGraph, the resource appears in the virtual catalog as an information-rich object, with a title, thumbnail image and summary. Alternatively, you can provide this information yourself.
+
+Add custom tags to further categorize your resrouce.
+
+Found something useful? Let others know by upvoting it.
+
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node JS + Express
+- AngularJS 1.6.x
+- PostgreSQL 9.1.x + Sequelize
 
 ## Development
 
@@ -37,9 +44,7 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
-bower install
 ```
 
 ### Roadmap
@@ -50,3 +55,5 @@ View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+Visit our wiki (https://github.com/delphineus/delphineus/wiki) to learn more!
