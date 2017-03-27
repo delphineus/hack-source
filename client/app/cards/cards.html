@@ -5,6 +5,7 @@
     ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:search.category | filterByTag:search.tag | filterBySearch:search.bar'>
     <div class="card-image" ng-style="{'background-image': 'url({{resource.imgUrl}})'}"></div>
     <div class="card-content">
+      <p><span class="card-category">{{resource.Categories[0].title}}</span></p>
       <h2>{{resource.title}}</h2>
       <p>{{resource.summary}}</p>
     </div>

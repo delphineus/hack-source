@@ -3,12 +3,10 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('ResourceCategories', [
-      { ResourceId: 1, CategoryId: 2, createdAt: new Date(), updatedAt: new Date() },
-      { ResourceId: 1, CategoryId: 1, createdAt: new Date(), updatedAt: new Date() },
-      { ResourceId: 2, CategoryId: 3, createdAt: new Date(), updatedAt: new Date() },
-      { ResourceId: 2, CategoryId: 2, createdAt: new Date(), updatedAt: new Date() },
-      { ResourceId: 3, CategoryId: 1, createdAt: new Date(), updatedAt: new Date() },
-      { ResourceId: 3, CategoryId: 3, createdAt: new Date(), updatedAt: new Date() },
+      { ResourceId: 1, CategoryId: 4, createdAt: new Date(), updatedAt: new Date() },
+      { ResourceId: 2, CategoryId: 6, createdAt: new Date(), updatedAt: new Date() },
+      { ResourceId: 3, CategoryId: 6, createdAt: new Date(), updatedAt: new Date() },
+      { ResourceId: 4, CategoryId: 8, createdAt: new Date(), updatedAt: new Date() }
     ], {});
   },
 
