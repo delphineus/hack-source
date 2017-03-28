@@ -1,19 +1,20 @@
-//Outline
+## Basic Outline
 
-// tool bar
-  // create search directive
-  //  create add resource directive
-  // create a login directive
+* tool bar
+  * create add resource directive
+  * create a login directive
 
-// body
-  // Content
-    // create a directive rows
-      // create directive for cards
-        // create vote directive
+* body
+  * Search + filter
+    * create search directive
+  * Content
+    * create a directive for card list
+      * create directive for cards
+        * create vote directive
 
-  // Side nav
-    // Categories
-      // links
-    // Tags
-      // create chips template
-      // limit tags to display
+  * Side nav
+    * Categories
+      * links
+    * Tags
+      * create chips template
+      * limit tags to display
