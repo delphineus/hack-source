@@ -21,6 +21,10 @@ module.exports = {
     })
     .then(function(resources) {
       res.send(resources);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
     });
   },
 
@@ -166,6 +170,10 @@ module.exports = {
         });
         res.send(tagsWithCount);
       });
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
     });
   },
 
