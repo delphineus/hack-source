@@ -1,13 +1,10 @@
 Resources:
-  1. https://material.angularjs.org/latest/demo/virtualRepeat
-  2. https://material.angularjs.org/latest/api/directive/mdVirtualRepeatContainer
-  3. https://material.angularjs.org/latest/api/directive/mdVirtualRepeat
+  1. https://material.angularjs.org/latest/demo/virtualRepeat (didn't use but may be useful)
+  2. https://material.angularjs.org/latest/api/directive/mdVirtualRepeatContainer (didn't use but may be useful)
+  3. https://material.angularjs.org/latest/api/directive/mdVirtualRepeat (didn't use but may be useful)
   4. https://material.angularjs.org/latest/api/directive/mdToolbar
-  5. https://material.angularjs.org/latest/api/directive/mdButton
-
-Custom Directive docs: https://docs.angularjs.org/guide/directive
 
 General idea/goals:
   - Display list of resource cards
-  - Re-render list of cards after category or tag GET request
-  - Filter query results by 'popular' and 'newest' filters
+  - Re-render list of cards after category or tag filter change
+  - Order list by 'popular' and 'most recent' params
