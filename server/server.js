@@ -7,7 +7,6 @@ var githubAuth = require('./githubAuth.js');
 var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var jwt = require('jwt-simple');
 var routes = require('./routes');
 var authRoutes = require('./authRoutes');
 
@@ -29,16 +28,6 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api', routes);
 app.use('/auth', authRoutes);
-
-var ensureAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.json({token: null, user: null});
-};
-
-app.get('/logged-in', ensureAuthenticated, function(req, res) {
-  var token = jwt.encode(req.user, 'secret');
-  res.json({token: token, user: req.user});
-});
 
 
 app.listen(port, function() {

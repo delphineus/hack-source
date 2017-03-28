@@ -77,12 +77,30 @@ angular.module('hackSource.services', [])
     postResource: postResource
   };
 })
-.factory('counter', function() {
-  var count = 0;
-  var incrementer = function() {
-    count++;
+
+.factory('User', function ($http) {
+  var user = {};
+  var isNoUser = true;
+
+  var checkLoggedIn = function() {
+    return $http({
+      method: 'GET',
+      url: '/auth/logged-in'
+    })
+    .then(function(response) {
+      if (response.data.user) {
+        user = response.data.user;
+        isNoUser = false;
+      }
+      return {user: user, isNoUser: isNoUser};
+    });
   };
-  return {incrementer: incrementer, count: count};
+
+  return {
+    user: user,
+    isNoUser: isNoUser,
+    checkLoggedIn: checkLoggedIn
+  };
 })
 
 .filter('filterByCat', function () {
@@ -125,6 +143,32 @@ angular.module('hackSource.services', [])
       });
 
       if (itemTags.indexOf(searchTag) !== -1) {
+        filtered.push(item);
+      }
+    }
+    return filtered;
+  };
+})
+.filter('filterBySearch', function () {
+  return function (items, searchBar) {
+    var filtered = [];
+
+    if (!searchBar) {
+      return items;
+    }
+
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var itemSearch = [];
+
+      item.Tags.forEach(function(tag) {
+        itemSearch.push(tag.title);
+      });
+      item.Categories.forEach(function(cat) {
+        itemSearch.push(cat.title);
+      });
+
+      if (itemSearch.indexOf(searchBar) !== -1) {
         filtered.push(item);
       }
     }

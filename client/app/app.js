@@ -7,8 +7,9 @@ angular.module('hackSource', [
   'hackSource.tags',
   'hackSource.sortList',
   'hackSource.addResource',
-  'hackSource.vote',
-  'ngMaterial'
+  'ngMaterial',
+  'hackSource.search',
+  'hackSource.user'
 ])
 .run(function() {
   console.log('Moving path of app');
