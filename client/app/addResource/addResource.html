@@ -17,7 +17,7 @@
           <md-content class="md-padding">
             <md-input-container class="md-block">
                <label>Enter URL</label>
-               <input type="url" ng-model="url">
+               <input type="url" ng-model="data.url">
             </md-input-container>
           </md-content>
         </md-tab>
@@ -51,7 +51,7 @@
 
             <md-input-container class="md-block">
               <label>Tags (seperate mulitple tags by spaces)</label>
-              <input type="text" md-select-on-focus ng-model="tags">
+              <input type="text" md-select-on-focus ng-model="data.tags">
             </md-input-container>
           </md-content>
         </md-tab>
@@ -63,7 +63,7 @@
         PREVIOUS
       </md-button>
       <span flex></span>
-      <md-button class="md-primary md-raised" ng-disabled="!url" ng-click="nextTab(url, tags, metaData.title, metaData.summary)" style="margin-right:20px;">
+      <md-button class="md-primary md-raised" ng-disabled="!data.url" ng-click="nextTab()" style="margin-right:20px;">
         {{ buttonText }}
       </md-button>
     </md-dialog-actions>

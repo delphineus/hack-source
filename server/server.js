@@ -40,6 +40,7 @@ app.get('/logged-in', ensureAuthenticated, function(req, res) {
   res.json({token: token, user: req.user});
 });
 
+
 app.listen(port, function() {
   console.log(`P O R T 3000
 -+88_

@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "",
+    "username": "maxberger",
     "password": null,
-    "database": "",
+    "database": "delphinusdb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

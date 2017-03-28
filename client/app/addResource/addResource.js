@@ -3,6 +3,8 @@ angular.module('hackSource.addResource', ['ngMaterial'])
 .controller('AddResourceController', function($scope, $mdDialog, User) {
   $scope.customFullscreen = false;
 
+  $scope.data = {};
+
   $scope.loggedIn = false;
   User.checkLoggedIn().then(function(user) {
     if (user.user.id !== undefined) {
@@ -10,10 +12,8 @@ angular.module('hackSource.addResource', ['ngMaterial'])
     }
   });
 
+  // This Add Resource form uses this controller. It is called on line 89
   var DialogController = function($scope, $mdDialog, $window, Data, User) {
-    $scope.hide = function() {
-      $mdDialog.hide();
-    };
 
     $scope.cancel = function() {
       $mdDialog.cancel();
@@ -24,8 +24,6 @@ angular.module('hackSource.addResource', ['ngMaterial'])
       $window.location.reload();
     };
 
-    $scope.selectedTab = 0;
-
     $scope.prevTab = function() {
       if ($scope.selectedTab === 2) {
         $scope.buttonText = 'NEXT';
@@ -35,28 +33,22 @@ angular.module('hackSource.addResource', ['ngMaterial'])
 
     $scope.buttonText = 'NEXT';
 
-    $scope.nextTab = function(url, tags, title) {
+    // The functionality of the next button is entirely controlled by this function
+    $scope.nextTab = function() {
       if ($scope.selectedTab === 0) {
-        getMeta(url);
+        getMeta($scope.data.url);
       } else if ($scope.selectedTab === 1) {
         $scope.buttonText = 'SUBMIT';
       } else {
-        if (tags) { tags = tags.split(' '); }
+        if ($scope.data.tags) { $scope.data.tags.toLowerCase().split(' '); }
 
         Data.postResource($scope.data);
-        Data.postTags(tags);
         $scope.finish();
       }
       $scope.selectedTab++;
     };
 
     getMeta = function(url) {
-      $scope.data = {
-        url: url,
-        imgUrl: 'https://i.stack.imgur.com/Mmww2.png',
-        category: ''
-      };
-
       User.checkLoggedIn().then(function(user) {
         $scope.data.UserId = user.user.id;
       });
@@ -72,6 +64,8 @@ angular.module('hackSource.addResource', ['ngMaterial'])
             } else {
               $scope.data.imgUrl = meta.image.url;
             }
+          } else {
+            $scope.data.imgUrl = 'https://i.stack.imgur.com/Mmww2.png';
           }
         });
     };
@@ -87,14 +81,19 @@ angular.module('hackSource.addResource', ['ngMaterial'])
 
 
   $scope.showResourceForm = function(ev) {
+    // If the user is logged in, the form is displayed. Otherwise, they are asked to log in.
     if ($scope.loggedIn) {
       $mdDialog.show({
         controller: DialogController,
         templateUrl: 'app/addResource/addResource.html',
+        // not sure what vvv this vvv does
         parent: angular.element(document.body),
         targetEvent: ev,
       })
-      .then(function() {}, function() {
+      .then(function() {
+        // this function is called by $mdDialog.hide();
+      }, function() {
+        // this function is called by $mdDialog.cancel();
         console.log('You chose wrong');
       });
     } else {
