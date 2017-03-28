@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api', routes);
 app.use('/auth', authRoutes);
 
+
 app.listen(port, function() {
   console.log(`P O R T 3000
 -+88_

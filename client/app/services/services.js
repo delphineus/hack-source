@@ -68,25 +68,13 @@ angular.module('hackSource.services', [])
     });
   };
 
-  var postTags = function(tags) {
-    if (!tags) { return; }
-    tags.forEach((tag) => {
-      $http({
-        method: 'POST',
-        url: '/api/tags',
-        data: JSON.stringify({title: tag})
-      });
-    });
-  };
-
   return {
     getAllResources: getAllResources,
     getAllCategories: getAllCategories,
     getAllTags: getAllTags,
     getPopularTags: getPopularTags,
     getMetaDataFor: getMetaDataFor,
-    postResource: postResource,
-    postTags: postTags
+    postResource: postResource
   };
 })
 
