@@ -10,7 +10,8 @@ angular.module('hackSource', [
   'ngMaterial',
   'hackSource.search',
   'hackSource.user',
-  'infinite-scroll'
+  'infinite-scroll',
+  '720kb.socialshare'
   ])
 .run(function() {
   console.log('Moving path of app');
