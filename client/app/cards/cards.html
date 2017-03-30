@@ -24,8 +24,16 @@
           title="{{resource.title}}"
           target="_blank"
           aria-label="{{resource.title}}"
-          class="md-raised md-primary">
-          View Resource
+          class="md-raised md-primary"
+        >
+        View Resource
+        </md-button>
+        <md-button
+          ng-disabled="true"
+          class="md-raised md-primary"
+        >
+        <i class="fa fa-eye" aria-hidden="true"></i>
+        {{resource.views}}
         </md-button>
         <my-vote></my-vote>
       </div>
