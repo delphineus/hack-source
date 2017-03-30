@@ -27,8 +27,10 @@ angular.module('hackSource.cards', ['infinite-scroll', '720kb.socialshare'])
     }
   };
 
-  $scope.deleteResource = function() {
-    alert('Delete resource clicked');
+  $scope.deleteResource = function(id, title) {
+    if (confirm('Delete resource "' + title + '"?')) {
+      Data.deleteResource({id: id});
+    }
   };
 
 })

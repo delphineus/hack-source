@@ -97,6 +97,10 @@ module.exports = {
     });
   },
 
+  deleteResource: function(req, res) {
+    Resource.destroy({where: {id: req.query.id}, limit: 1});
+  },
+
   addView: function(req, res) {
     Resource.findById(req.body.id).then(function(resource) {
       return resource.increment({'views': 1});

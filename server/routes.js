@@ -3,6 +3,7 @@ var resourceController = require('./controllers/resourceController.js');
 
 router.get('/resources', resourceController.getResources);
 router.post('/resources', resourceController.postResource);
+router.delete('/resources', resourceController.deleteResource);
 router.put('/resource-view', resourceController.addView);
 router.post('/opengraph', resourceController.getOpenGraph);
 

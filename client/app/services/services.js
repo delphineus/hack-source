@@ -68,6 +68,13 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var deleteResource = function(data) {
+    $http({
+      method: 'DELETE',
+      url: '/api/resources?id=' + data.id
+    });
+  };
+
   var addView = function(data) {
     $http({
       method: 'PUT',
@@ -95,7 +102,8 @@ angular.module('hackSource.services', [])
     getMetaDataFor: getMetaDataFor,
     postResource: postResource,
     addView: addView,
-    postTags: postTags
+    postTags: postTags,
+    deleteResource: deleteResource
   };
 })
 
