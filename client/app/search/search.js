@@ -36,11 +36,6 @@ angular.module('hackSource.search', [])
   //   $scope.selectedItem = null;
   //   $scope.searchText = null;
   // };
-  $scope.searchText = null;
-  $scope.change = (text) => {
-    let value = $scope.searchText;
-    Data.filterBySearch(value);
-  }
 })
 .directive('hsSearch', function() {
   return {
