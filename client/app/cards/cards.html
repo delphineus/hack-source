@@ -1,8 +1,8 @@
 <div ng-controller='cardsCtrl'>
-  <md-card class="card-wrapper"
-    md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
-    md-theme-watch
-    ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:search.category | filterByTag:search.tag | filterBySearch:search.bar'>
+    <md-card class="card-wrapper"
+      md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
+      md-theme-watch
+      ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:search.category | filterByTag:search.tag | filter:searchText'>
     <div class="card-image" ng-style="{'background-image': 'url({{resource.imgUrl}})'}"></div>
     <div class="card-content">
       <p><span class="card-category">{{resource.Categories[0].title}}</span></p>
