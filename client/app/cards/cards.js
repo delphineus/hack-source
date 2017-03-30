@@ -6,6 +6,10 @@ angular.module('hackSource.cards', [])
       $scope.data = data;
     });
 
+  $scope.addView = function(id) {
+    Data.addView({id: id});
+  };
+
 })
 .directive('myCard', function() {
   return {
