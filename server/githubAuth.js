@@ -4,9 +4,9 @@ var GITHUB = require('./config/github-config.js');
 var User = require('./models').User;
 
 module.exports = passport.use(new GitHubStrategy({
-  clientID: GITHUB.clientID,
-  clientSecret: GITHUB.clientSecret,
-  callbackURL: GITHUB.callbackURL
+  clientID: process.env.GITHUB_ID || GITHUB.clientID,
+  clientSecret: process.env.GITHUB_SECRET || GITHUB.clientSecret,
+  callbackURL: process.env.GITHUB_CALLBACK || GITHUB.callbackURL
 
   /* DEPLOYMENT SETTINGS */
   // clientID: process.env.GITHUB_ID,
