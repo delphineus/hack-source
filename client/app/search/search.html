@@ -4,7 +4,7 @@
   flex="70"
   ng-cloak>
   <div flex="70">
-  <form ng-submit="setSearchBar(searchText)" name="searchForm">
+  <form name="searchForm">
     <md-autocomplete flex
       md-input-name="autocompleteField"
       md-input-type="text"
@@ -23,11 +23,6 @@
         <div type="search" layout="row" class="item" layout-align="start center">
           <span md-highlight-text="searchText">{{item.title}}</span>
         </div>
-      <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
-      <div ng-message="md-require-match">No match found.</div>
-      <div ng-message="minlength">Your entry is not long enough.</div>
-      <div ng-message="maxlength">Your entry is too long.</div>
-      </div>
     </md-autocomplete>
   </form>
   </div>
