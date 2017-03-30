@@ -5,10 +5,12 @@ if (process.env.NODE_ENV !== 'production') {
   var GITHUB = require('./config/github-config.js');
 }
 
+// If the environment is production the github configs will be provided by the server
+// otherwise the configs will are expected to be in github-config.js
 module.exports = passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_ID || GITHUB.clientID,
   clientSecret: process.env.GITHUB_SECRET || GITHUB.clientSecret,
-  callbackURL: process.env.GITHUB_CALLBACK || GITHUB.callbackURL
+  callbackURL: process.env.GITHUB_CALLBACK_URL || GITHUB.callbackURL
 
   /* DEPLOYMENT SETTINGS */
   // clientID: process.env.GITHUB_ID,
