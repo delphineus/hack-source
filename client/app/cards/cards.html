@@ -1,13 +1,98 @@
 <div ng-controller='cardsCtrl'>
+<div infinite-scroll="loadMore()">
     <md-card class="card-wrapper"
       md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
       md-theme-watch
       ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:search.category | filterByTag:search.tag | filter:searchText'>
+
+
+
+
+
+      <h2 class="card-title">{{resource.title}}</h2>
     <div class="card-image" ng-style="{'background-image': 'url({{resource.imgUrl}})'}"></div>
     <div class="card-content">
+
+
       <p><span class="card-category">{{resource.Categories[0].title}}</span></p>
-      <h2>{{resource.title}}</h2>
+      <!-- <h2>{{resource.title}}</h2> -->
       <p>{{resource.summary}}</p>
+      <div class="card-sbar" layout='row' layout-xs="column">
+      <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="facebook"
+     socialshare-url={{resource.url}}> <i class="fa fa-facebook"></i>
+      Facebook
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="twitter"
+     socialshare-url={{resource.url}}> <i class="fa fa-twitter"></i>
+      Twitter
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="linkedin"
+     socialshare-url={{resource.url}}> <i class="fa fa-linkedin"></i>
+      Linkedin
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="reddit"
+     socialshare-url={{resource.url}}> <i class="fa fa-reddit"></i>
+      Reddit
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="pinterest"
+     socialshare-url={{resource.url}}> <i class="fa fa-pinterest"></i>
+      Pinterest
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="google"
+     socialshare-url={{resource.url}}> <i class="fa fa-google"></i>
+      Google
+     </div>
+      </div>
+     <div layout='row' layout-xs="column">
+
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="tumblr"
+     socialshare-url={{resource.url}}> <i class="fa fa-tumblr"></i>
+      Tumblr
+     </div>
+         <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="evernote"
+     socialshare-url={{resource.url}}> <i class="fa fa-evernote"></i>
+      Evernote
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="hackernews"
+     socialshare-url={{resource.url}}> <i class="fa fa-hackernews"></i>
+      Hackernews
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="weibo"
+     socialshare-url={{resource.url}}> <i class="fa fa-weibo"></i>
+      Weibo
+     </div>
+     </div>
+
     </div>
     <md-divider></md-divider>
     <md-card-footer
@@ -40,4 +125,5 @@
       </div>
     </md-card-footer>
   </md-card>
+  </div>
 </div>
