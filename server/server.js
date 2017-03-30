@@ -30,7 +30,7 @@ app.use('/api', routes);
 app.use('/auth', authRoutes);
 
 app.listen(port, function() {
-  console.log(`P O R T 3000
+  console.log(`P O R T ${port}
 ________________________________________________
  _________________________ ___ __ __ --_____ ___
 _ 8_______________________ ____  ___ _ ____ _ __

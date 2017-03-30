@@ -68,6 +68,14 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var addView = function(data) {
+    $http({
+      method: 'PUT',
+      url: '/api/resource-view',
+      data: JSON.stringify(data)
+    });
+  };
+
   var postTags = function(tags) {
     if (!tags) { return; }
     tags.forEach((tag) => {
@@ -86,6 +94,7 @@ angular.module('hackSource.services', [])
     getPopularTags: getPopularTags,
     getMetaDataFor: getMetaDataFor,
     postResource: postResource,
+    addView: addView,
     postTags: postTags
   };
 })

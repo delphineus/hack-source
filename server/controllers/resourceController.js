@@ -95,6 +95,12 @@ module.exports = {
     });
   },
 
+  addView: function(req, res) {
+    Resource.findById(req.body.id).then(function(resource) {
+      return resource.increment({'views': 1});
+    });
+  },
+
   postLike: function(req, res) {
     Like.create({
       ResourceId: req.body.resourceId,

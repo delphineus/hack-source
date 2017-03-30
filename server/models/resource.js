@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     title: DataTypes.STRING,
     imgUrl: DataTypes.STRING,
     summary: DataTypes.TEXT,
+    views: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER
   }, {
     classMethods: {

@@ -25,6 +25,11 @@ module.exports = {
       avatarUrl: {
         type: Sequelize.STRING
       },
+      accountRank: {
+        allowNull: false,
+        defaultValue: 0,
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
