@@ -6,6 +6,7 @@
   <link href="./lib/bower_components/font-awesome/css/font-awesome.min.css"></link>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet">
   <script src="popup.js"></script>
+  <script src="./lib/bower_components/jquery/dist/jquery.js"></script>
 </head>
 <body>
   <div class="container">
@@ -16,35 +17,42 @@
     <form action="" method="post">
       <div class="inputSection" class="urlBar">
       <label>Enter URL</label>
-      <input name="class" class="input" id="urlInput" class="urlInput">
+      <input name="class" class="input" id="urlInput" class="urlInput" size="50">
       </div>
 
       <div class="inputSection" class="titleBar">
       <label>Title</label>
-      <input name="title" class="input" class="titleInput">
+      <input name="title" class="input" id="titleInput" class="titleInput" size="50">
       </div>
 
       <div class="inputSection" class="summaryBar">
       <label>Summary</label>
-      <input name="summary" class="input" class="summaryInput">
+      <input name="summary" class="input" id="summaryInput" class="summaryInput" size="50">
       </div>
 
       <div class="inputSection" class="tagsBar">
       <label>Tags (separate with spaces)</label>
-      <input name="tags" class="input" class="tagsInput">
+      <input name="tags" class="input" class="tagsInput" size="50">
       </div>
 
       <div class="inputSection" class="categoryBar">
       <label>Category</label>
       <div class="select">
-                <input type="checkbox" name="category1" />Category
-                <input type="checkbox" name="category2" />Category
-                <input type="checkbox" name="category3" />Category
-                <input type="checkbox" name="category4" />Category
-                <input type="checkbox" name="category5" />Category
-                <input type="checkbox" name="category6" />Category
+                <input type="checkbox" name="category1" />Backend
+                <input type="checkbox" name="category2" />CSS
+                <input type="checkbox" name="category3" />Databases
+                <br>
+                <input type="checkbox" name="category4" />Deployment
+                <input type="checkbox" name="category5" />Dev Tools
+                <input type="checkbox" name="category6" />Frontend Frameworks
+                <br>
+                <input type="checkbox" name="category4" />HTML
+                <input type="checkbox" name="category5" />Javascript
+                <input type="checkbox" name="category6" />UX
       </div>
       </div>
+      <br>
+      <input type="submit" value="Submit" class="submit">
     </form>
   </div>
 </body>

@@ -82,10 +82,11 @@ document.addEventListener('DOMContentLoaded', function() {
     renderURLinput(url);
     $.get(url, function(data) {
         console.log($(data).filter('meta'));
-        console.log($(data).filter('title'));
         console.log($(data).filter('img'));
-        var description = $(data).filter('meta[name=description]').attr('content')
+        var description = $(data).filter('meta[name=description]').attr('content') || '';
+        var title = $(data).filter('title').text() || '';
         document.getElementById('summaryInput').value = description;
+        document.getElementById('titleInput').value = title;
 
     });
     }, function(errorMessage) {
