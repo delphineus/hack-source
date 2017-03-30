@@ -1,5 +1,5 @@
 angular.module('hackSource.cards', ['infinite-scroll', '720kb.socialshare'])
-.controller('cardsCtrl', function($scope, Data) {
+.controller('cardsCtrl', function($scope, Data, User) {
 
   Data.getAllResources()
     .then(function(data) {
@@ -7,6 +7,10 @@ angular.module('hackSource.cards', ['infinite-scroll', '720kb.socialshare'])
       $scope.data = data.slice(-2);
       console.log(data.slice(-2))
     });
+
+  User.checkLoggedIn().then(function(result) {
+    $scope.user = result.user;
+  });
 
   $scope.addView = function(id) {
     Data.addView({id: id});
@@ -21,6 +25,10 @@ angular.module('hackSource.cards', ['infinite-scroll', '720kb.socialshare'])
     for (var i = last; i >= 0; i--) {
       $scope.data.push($scope.allData[i]);
     }
+  };
+
+  $scope.deleteResource = function() {
+    alert('Delete resource clicked');
   };
 
 })
