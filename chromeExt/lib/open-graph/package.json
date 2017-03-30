@@ -1,0 +1,95 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "open-graph@^0.2.3",
+        "scope": null,
+        "escapedName": "open-graph",
+        "name": "open-graph",
+        "rawSpec": "^0.2.3",
+        "spec": ">=0.2.3 <0.3.0",
+        "type": "range"
+      },
+      "C:\\Users\\Meg\\desktop\\hackReactor\\delphineus\\chromeExt\\lib"
+    ]
+  ],
+  "_from": "open-graph@>=0.2.3 <0.3.0",
+  "_id": "open-graph@0.2.3",
+  "_inCache": true,
+  "_location": "/open-graph",
+  "_nodeVersion": "7.7.1",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/open-graph-0.2.3.tgz_1488845347382_0.3090003924444318"
+  },
+  "_npmUser": {
+    "name": "samholmes",
+    "email": "sam.lb.holmes@gmail.com"
+  },
+  "_npmVersion": "4.1.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "open-graph@^0.2.3",
+    "scope": null,
+    "escapedName": "open-graph",
+    "name": "open-graph",
+    "rawSpec": "^0.2.3",
+    "spec": ">=0.2.3 <0.3.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/open-graph/-/open-graph-0.2.3.tgz",
+  "_shasum": "1413a5a15118e1a8cfdeafd957f09ebe5d8f692a",
+  "_shrinkwrap": null,
+  "_spec": "open-graph@^0.2.3",
+  "_where": "C:\\Users\\Meg\\desktop\\hackReactor\\delphineus\\chromeExt\\lib",
+  "author": {
+    "name": "Sam Holmes"
+  },
+  "bugs": {
+    "url": "https://github.com/samholmes/node-open-graph/issues"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "request": "^2.73.0"
+  },
+  "description": "An Open Graph implementation for Node.js.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "1413a5a15118e1a8cfdeafd957f09ebe5d8f692a",
+    "tarball": "https://registry.npmjs.org/open-graph/-/open-graph-0.2.3.tgz"
+  },
+  "gitHead": "17d9cbcb8147a330189d88a1e275682740abc9ac",
+  "homepage": "https://github.com/samholmes/node-open-graph#readme",
+  "keywords": [
+    "open graph",
+    "open",
+    "graph",
+    "opengraph",
+    "og"
+  ],
+  "license": "BSD",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "samholmes",
+      "email": "sam.lb.holmes@gmail.com"
+    }
+  ],
+  "name": "open-graph",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/samholmes/node-open-graph.git",
+    "web": "http://github.com/samholmes/node-open-graph"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.2.3"
+}

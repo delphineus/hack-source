@@ -1,4 +1,4 @@
-function getCurrentTabUrl(callback) {
+git addfunction getCurrentTabUrl(callback) {
   var queryInfo = {
     active: true,
     currentWindow: true
