@@ -1,17 +1,16 @@
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
-var GITHUB = require('./config/github-config.js');
 var User = require('./models').User;
 
+// If the environment is production the github configs will be provided by the server
+// otherwise the configs are expected to be in github-config.js
+if (process.env.NODE_ENV !== 'production') {
+  var GITHUB = require('./config/github-config.js');
+}
 module.exports = passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_ID || GITHUB.clientID,
   clientSecret: process.env.GITHUB_SECRET || GITHUB.clientSecret,
-  callbackURL: process.env.GITHUB_CALLBACK || GITHUB.callbackURL
-
-  /* DEPLOYMENT SETTINGS */
-  // clientID: process.env.GITHUB_ID,
-  // clientSecret: process.env.GITHUB_SECRET,
-  // callbackURL: 'http://glacial-inlet-40419.herokuapp.com/auth/github/callback'
+  callbackURL: process.env.GITHUB_CALLBACK_URL || GITHUB.callbackURL
 },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({
