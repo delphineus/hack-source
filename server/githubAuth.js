@@ -1,7 +1,7 @@
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 var User = require('./models').User;
-if (process.env.ENV_VARIABLE !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   var GITHUB = require('./config/github-config.js');
 }
 
