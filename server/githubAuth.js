@@ -1,12 +1,12 @@
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 var User = require('./models').User;
+
+// If the environment is production the github configs will be provided by the server
+// otherwise the configs are expected to be in github-config.js
 if (process.env.NODE_ENV !== 'production') {
   var GITHUB = require('./config/github-config.js');
 }
-
-// If the environment is production the github configs will be provided by the server
-// otherwise the configs will are expected to be in github-config.js
 module.exports = passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_ID || GITHUB.clientID,
   clientSecret: process.env.GITHUB_SECRET || GITHUB.clientSecret,
