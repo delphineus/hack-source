@@ -15,11 +15,11 @@ function getCurrentTabUrl(callback) {
 
 var resourceData = {
   url: '',
-  tags: [],
+  tags: ['default'],
   title: '',
   imgUrl: '',
   summary: '',
-  userId: '',
+  UserId: 14,
   category: ''
 };
 
@@ -30,12 +30,17 @@ function onSubmit() {
   // resource.userId =
   resourceData.category = document.getElementById('categoryInput').value;
   var tags = document.getElementById('tagsInput').value;
-  resourceData.tags = tags.split(" ");
+  if (tags.length > 0) {
+    resourceData.tags = tags;
+  }
+  console.log('Resource Data: ', resourceData);
+  $.post('http://localhost:3000/api/resources', resourceData);
 };
 
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
       $.get(url, function(data) {
+          //Get metadata from current tab
           var defaultPhoto = 'https://i.stack.imgur.com/Mmww2.png';
           resourceData.imgUrl = $(data).filter('meta[property="og:image"]').attr('content') || defaultPhoto;
           var description = $(data).filter('meta[name=description]').attr('content') || '';
@@ -45,5 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('titleInput').value = title;
       });
     });
+  //Post data when submit is clicked
+  $("#submit").click(onSubmit);
 });
-

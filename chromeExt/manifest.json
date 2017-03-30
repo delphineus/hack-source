@@ -18,6 +18,7 @@
     "activeTab",
     "cookies",
     // TODO - Replace with our deployed link
-    "*://*.glacial-inlet-40419.herokuapp.com/"
+    "*://*.glacial-inlet-40419.herokuapp.com/",
+    "http://localhost/*"
   ]
 }
