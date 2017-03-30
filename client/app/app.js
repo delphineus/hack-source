@@ -9,8 +9,9 @@ angular.module('hackSource', [
   'hackSource.addResource',
   'ngMaterial',
   'hackSource.search',
-  'hackSource.user'
-])
+  'hackSource.user',
+  'infinite-scroll'
+  ])
 .run(function() {
   console.log('Moving path of app');
 });
