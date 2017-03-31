@@ -31,3 +31,7 @@ server/config/github-config.js
 
 
 # remove this before deployment
+<<<<<<< HEAD
+=======
+server/config/config.json
+>>>>>>> removed config
