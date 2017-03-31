@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
         Resource.belongsToMany(models.Tag, {through: models.ResourceTag});
         Resource.belongsToMany(models.Category, {through: models.ResourceCategory});
         Resource.hasMany(models.Like);
+        Resource.hasMany(models.Dislike);
         Resource.hasMany(models.Bookmark);
         Resource.belongsTo(models.User);
       }
