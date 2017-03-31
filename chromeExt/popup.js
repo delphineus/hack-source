@@ -33,7 +33,6 @@ function onSubmit() {
   if (tags.length > 0) {
     resourceData.tags = tags;
   }
-  console.log('Resource Data: ', resourceData);
   $.post('http://hack-source.herokuapp.com/api/resources', resourceData);
 };
 
