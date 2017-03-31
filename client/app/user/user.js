@@ -1,6 +1,6 @@
-angular.module('hackSource.user', [])
+angular.module('hackSource.user', ['ngCookies'])
 
-.controller('LoginController', function($scope, $http, $window, User) {
+.controller('LoginController', function($scope, $http, $window, $cookies, User) {
   $scope.userData = User.user;
   $scope.isNoUser = User.isNoUser;
 
@@ -8,6 +8,8 @@ angular.module('hackSource.user', [])
     if ($window.location.pathname === '/') {
       User.checkLoggedIn().then(function(response) {
         $scope.userData = response.user;
+        //Save cookie with userID for chrome extension:
+        $cookies.put('HSid', $scope.userData.id);
         $scope.isNoUser = response.isNoUser;
       });
     }

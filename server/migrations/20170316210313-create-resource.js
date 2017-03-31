@@ -23,6 +23,11 @@ module.exports = {
       summary: {
         type: Sequelize.TEXT
       },
+      views: {
+        allowNull: false,
+        defaultValue: 0,
+        type: Sequelize.INTEGER
+      },
       UserId: {
         allowNull: false,
         type: Sequelize.INTEGER

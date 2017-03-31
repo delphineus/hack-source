@@ -34,6 +34,7 @@
     "sequelize-cli": "^2.7.0"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "mysql": "^2.13.0"
   }
 }

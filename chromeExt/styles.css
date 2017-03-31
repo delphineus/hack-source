@@ -1,0 +1,54 @@
+html {
+
+}
+
+.container {
+  background-color: rgb(224, 224, 224);
+  width: 325px;
+  height: 560px;
+  border-radius: 3px;
+  align-items: center;
+  text-align: left;
+  font-family: Roboto,Helvetica Neue,sans-serif;
+}
+
+.title {
+  font-family: Roboto,Helvetica Neue,sans-serif;
+  background-color: rgb(255,138,101);
+  height: 40px;
+  border-radius: 6px;
+  color: #333;
+  font-size: 2.5em;
+  font-weight: 700;
+  box-shadow: 2px 2px 3px 1px grey;
+  margin: 20px 0px;
+  text-align: center;
+}
+
+h3 {
+  padding-top: 6px;
+}
+
+#submit {
+  background-color: rgb(63,81,181);
+  float: right;
+}
+
+#tagsHelp {
+  margin-left: 2px;
+}
+
+#loginHelp {
+  margin-top: 3px;
+  padding-top: 6px;
+  position: absolute;
+  font-weight:  700;
+}
+
+#loginHelp a {
+  color: rgb(63,81,181);
+}
+#loginHelp a:hover {
+  color: rgb(255,138,101);
+  text-decoration: none;
+}

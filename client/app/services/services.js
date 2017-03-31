@@ -68,6 +68,14 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var addView = function(data) {
+    $http({
+      method: 'PUT',
+      url: '/api/resource-view',
+      data: JSON.stringify(data)
+    });
+  };
+
   var postTags = function(tags) {
     if (!tags) { return; }
     tags.forEach((tag) => {
@@ -86,6 +94,7 @@ angular.module('hackSource.services', [])
     getPopularTags: getPopularTags,
     getMetaDataFor: getMetaDataFor,
     postResource: postResource,
+    addView: addView,
     postTags: postTags
   };
 })
@@ -155,32 +164,6 @@ angular.module('hackSource.services', [])
       });
 
       if (itemTags.indexOf(searchTag) !== -1) {
-        filtered.push(item);
-      }
-    }
-    return filtered;
-  };
-})
-.filter('filterBySearch', function () {
-  return function (items, searchBar) {
-    var filtered = [];
-
-    if (!searchBar) {
-      return items;
-    }
-
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      var itemSearch = [];
-
-      item.Tags.forEach(function(tag) {
-        itemSearch.push(tag.title);
-      });
-      item.Categories.forEach(function(cat) {
-        itemSearch.push(cat.title);
-      });
-
-      if (itemSearch.indexOf(searchBar) !== -1) {
         filtered.push(item);
       }
     }

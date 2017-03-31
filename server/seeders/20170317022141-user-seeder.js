@@ -9,6 +9,7 @@ module.exports = {
         displayName: 'Peyton Owens',
         profileUrl: 'http://www.profileUrl.com',
         avatarUrl: 'https://randomuser.me/api/portraits/women/35.jpg',
+        accountRank: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -18,6 +19,7 @@ module.exports = {
         displayName: 'Gordon Lowe',
         profileUrl: 'http://www.profileUrl.com',
         avatarUrl: 'https://randomuser.me/api/portraits/men/27.jpg',
+        accountRank: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -27,6 +29,7 @@ module.exports = {
         displayName: 'John Price',
         profileUrl: 'http://www.profileUrl.com',
         avatarUrl: 'https://randomuser.me/api/portraits/men/29.jpg',
+        accountRank: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -36,6 +39,17 @@ module.exports = {
         displayName: 'Brad Rodriguez',
         profileUrl: 'http://www.profileUrl.com',
         avatarUrl: 'https://randomuser.me/api/portraits/men/12.jpg',
+        accountRank: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        githubId: '10248452',
+        username: 'Riski24',
+        displayName: 'Kyle Anson',
+        profileUrl: 'https://github.com/Riski24',
+        avatarUrl: 'https://avatars0.githubusercontent.com/u/10248452?v=3',
+        accountRank: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       }

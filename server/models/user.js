@@ -5,7 +5,11 @@ module.exports = function(sequelize, DataTypes) {
     username: DataTypes.STRING,
     displayName: DataTypes.STRING,
     profileUrl: DataTypes.STRING,
-    avatarUrl: DataTypes.STRING
+    avatarUrl: DataTypes.STRING,
+    accountRank: DataTypes.INTEGER
+    // 0: User
+    // 1: Moderator
+    // 2: Admin
   }, {
     classMethods: {
       associate: function(models) {
