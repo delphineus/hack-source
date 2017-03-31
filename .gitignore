@@ -27,8 +27,8 @@ node_modules/
 bower_components/
 
 # Private Keys
-=======
 server/config/github-config.js
 
 # remove this before deployment
 config.json
+server/config/config.json

@@ -11,35 +11,62 @@ function getCurrentTabUrl(callback) {
 
     callback(url);
   });
+};
 
-  // Most methods of the Chrome extension APIs are asynchronous. This means that
-  // you CANNOT do something like this:
-  //
-  // var url;
-  // chrome.tabs.query(queryInfo, function(tabs) {
-  //   url = tabs[0].url;
-  // });
-  // alert(url); // Shows "undefined", because chrome.tabs.query is async.
-}
+var resourceData = {
+  url: '',
+  tags: [],
+  title: '',
+  imgUrl: '',
+  summary: '',
+  UserId: '',
+  category: ''
+};
 
+function onSubmit() {
+  resourceData.url = document.getElementById('urlInput').value;
+  resourceData.title = document.getElementById('titleInput').value;
+  resourceData.summary = document.getElementById('summaryInput').value;
+  // resource.userId =
+  resourceData.category = document.getElementById('categoryInput').value;
+  var tags = document.getElementById('tagsInput').value;
+  tags = tags.split(' ');
+  if (tags.length > 0) {
+    resourceData.tags = tags;
+  }
+  console.log('Resource Data: ', resourceData);
+  $.post('http://localhost:3000/api/resources', resourceData);
+};
 
-function renderURLinput(url) {
-  document.getElementById('urlInput').value = url;
-}
+function getCookies(domain, name)
+  {
+    chrome.cookies.get({"url": domain, "name": name}, function(cookie) {
+      if (cookie) {
+        ID = cookie.value;
+        resourceData.UserId = ID;
+      } else {
+        console.log('Sorry, no cookie.');
+      }
+    });
+  }
 
 document.addEventListener('DOMContentLoaded', function() {
+  //Production
+  // getCookies("http://hack-source.herokuapp.com", "HSid");
+  //Development
+  getCookies("http://127.0.0.1:3000/", "HSid");
   getCurrentTabUrl(function(url) {
-    renderURLinput(url);
-    $.get(url, function(data) {
-        console.log($(data).filter('meta'));
-        console.log($(data).filter('img'));
-        var description = $(data).filter('meta[name=description]').attr('content') || '';
-        var title = $(data).filter('title').text() || '';
-        document.getElementById('summaryInput').value = description;
-        document.getElementById('titleInput').value = title;
-
+      $.get(url, function(data) {
+          //Get metadata from current tab
+          var defaultPhoto = 'https://i.stack.imgur.com/Mmww2.png';
+          resourceData.imgUrl = $(data).filter('meta[property="og:image"]').attr('content') || defaultPhoto;
+          var description = $(data).filter('meta[name=description]').attr('content') || '';
+          var title = $(data).filter('title').text() || '';
+          document.getElementById('urlInput').value = url;
+          document.getElementById('summaryInput').value = description;
+          document.getElementById('titleInput').value = title;
+      });
     });
-    }, function(errorMessage) {
-      renderStatus('Cannot display image. ' + errorMessage);
-    });
+  //Post data when submit is clicked
+  $("#submit").click(onSubmit);
 });
