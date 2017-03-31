@@ -7,50 +7,61 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet">
   <script src="popup.js"></script>
   <script src="./lib/bower_components/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
   <div class="container">
+
+  <form>
     <div class="title">
-    <h4>Share This Resource</h4>
+    <h3>Share This Resource</h3>
     </div>
-<!--     ADD FORM ACTIONS -->
-    <form action="" method="post">
-      <div class="inputSection" class="urlBar">
-      <label>Enter URL</label>
-      <input value="class" class="input" id="urlInput" class="urlInput" size="50">
-      </div>
 
-      <div class="inputSection" class="titleBar">
-      <label>Title</label>
-      <input value="title" class="input" id="titleInput" class="titleInput" size="50">
+    <div class="form-group">
+      <label for="urlInput" class="col-2 col-form-label">URL</label>
+      <div class="col-10">
+        <input class="form-control" type="url" value="http://yourResource.com" id="urlInput">
       </div>
+    </div>
 
-      <div class="inputSection" class="summaryBar">
-      <label>Summary</label>
-      <input value="summary" class="input" id="summaryInput" class="summaryInput" size="50">
-      </div>
+    <div class="form-group">
+      <label for="titleInput">Title</label>
+      <textarea class="form-control" id="titleInput" rows="1"></textarea>
+    </div>
+    <div class="form-group">
 
-      <div class="inputSection" class="tagsBar">
-      <label>Tags (separate with spaces)</label>
-      <input class="input" id="tagsInput" size="50">
-      </div>
+    <div class="form-group">
+      <label for="summaryInput">Summary</label>
+      <textarea class="form-control" id="summaryInput" rows="4"></textarea>
+    </div>
+    <div class="form-group">
 
-      <div class="inputSection" class="categoryBar">
-      <label>Category</label>
-      <select id="categoryInput">
-                <option value="Backend">Backend</option>
-                <option value="CSS">CSS</option>
-                <option value="Databases">Databases</option>
-                <option value="Deployment">Deployment</option>
-                <option value="Dev Tools">Dev Tools</option>
-                <option value="Frontend Frameworks">Frontend Frameworks</option>
-                <option value="HTML">HTML</option>
-                <option value="Javascript">Javascript</option>
-                <option value="UX">UX</option>
+    <div class="form-group">
+      <label for="categoryInput">Category</label>
+      <select class="form-control" id="categoryInput">
+        <option>Backend</option>
+        <option>CSS</option>
+        <option>Databases</option>
+        <option>Dev Tools</option>
+        <option>Frontend Frameworks</option>
+        <option>HTML</option>
+        <option>Javascript</option>
+        <option>UX</option>
       </select>
-      <input type="submit" value="Submit" id="submit" class="submit">
-      </div>
-    </form>
+    </div>
+
+    <div class="form-group">
+      <label for="tagsInput">Tags</label>
+      <small id="tagsHelp" class="form-text text-muted">(seperate mulitple tags by spaces)</small>
+      <textarea class="form-control" id="tagsInput" rows="1"></textarea>
+    </div>
+    <div class="form-group">
+
+    <button type="submit" class="btn btn-primary" id="submit">SUBMIT</button>
+  </form>
+
+
+
   </div>
 </body>
 </html>

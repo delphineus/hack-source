@@ -27,7 +27,6 @@ function onSubmit() {
   resourceData.url = document.getElementById('urlInput').value;
   resourceData.title = document.getElementById('titleInput').value;
   resourceData.summary = document.getElementById('summaryInput').value;
-  // resource.userId =
   resourceData.category = document.getElementById('categoryInput').value;
   var tags = document.getElementById('tagsInput').value;
   tags = tags.split(' ');
@@ -67,6 +66,5 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('titleInput').value = title;
       });
     });
-  //Post data when submit is clicked
   $("#submit").click(onSubmit);
 });
