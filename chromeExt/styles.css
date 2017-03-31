@@ -4,53 +4,51 @@ html {
 
 .container {
   background-color: rgb(224, 224, 224);
-  width: 400px;
-  height: 320px;
+  width: 325px;
+  height: 560px;
   border-radius: 3px;
   align-items: center;
   text-align: left;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  font-family: Roboto,Helvetica Neue,sans-serif;
 }
 
 .title {
   font-family: Roboto,Helvetica Neue,sans-serif;
   background-color: rgb(255,138,101);
-  width: 100%;
   height: 40px;
-  max-height: 70px;
-  padding: 0px 16px;
-  margin: 15px 0px;
+  border-radius: 6px;
   color: #333;
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: 700;
-  letter-spacing: 0px;
-  box-sizing: border-box;
-  position: relative;
+  box-shadow: 2px 2px 3px 1px grey;
+  margin: 20px 0px;
+  text-align: center;
 }
 
-.inputSection, .select {
-  font-family: Roboto,Helvetica Neue,sans-serif;
-  width: 100%;
-  height: 30px;
-  margin: 20px 10px;
-  color: #333;
-  font-size: 1.2em;
-  font-weight: 700;
-  letter-spacing: 0px;
-  box-sizing: border-box;
-  position: relative;
+h3 {
+  padding-top: 6px;
 }
 
-.select {
-  font-size: 1em;
-}
-
-.categoryInput {
-  width: 150px;
-}
-
-.submit {
-  position: relative;
-  margin: 10px 30px 0px 0px;
+#submit {
+  background-color: rgb(63,81,181);
   float: right;
+}
+
+#tagsHelp {
+  margin-left: 2px;
+}
+
+#loginHelp {
+  margin-top: 3px;
+  padding-top: 6px;
+  position: absolute;
+  font-weight:  700;
+}
+
+#loginHelp a {
+  color: rgb(63,81,181);
+}
+#loginHelp a:hover {
+  color: rgb(255,138,101);
+  text-decoration: none;
 }

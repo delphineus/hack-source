@@ -17,7 +17,6 @@
   "permissions": [
     "activeTab",
     "cookies",
-    // TODO - Replace with our deployed link
     "http://hack-source.herokuapp.com/",
     "http://127.0.0.1:3000/"
   ]

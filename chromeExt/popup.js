@@ -27,7 +27,6 @@ function onSubmit() {
   resourceData.url = document.getElementById('urlInput').value;
   resourceData.title = document.getElementById('titleInput').value;
   resourceData.summary = document.getElementById('summaryInput').value;
-  // resource.userId =
   resourceData.category = document.getElementById('categoryInput').value;
   var tags = document.getElementById('tagsInput').value;
   tags = tags.split(' ');
@@ -35,7 +34,7 @@ function onSubmit() {
     resourceData.tags = tags;
   }
   console.log('Resource Data: ', resourceData);
-  $.post('http://localhost:3000/api/resources', resourceData);
+  $.post('http://hack-source.herokuapp.com/api/resources', resourceData);
 };
 
 function getCookies(domain, name)
@@ -44,8 +43,9 @@ function getCookies(domain, name)
       if (cookie) {
         ID = cookie.value;
         resourceData.UserId = ID;
+        $("#loginHelp").hide();
       } else {
-        console.log('Sorry, no cookie.');
+        $("#loginHelp").show();
       }
     });
   }
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //Production
   // getCookies("http://hack-source.herokuapp.com", "HSid");
   //Development
-  getCookies("http://127.0.0.1:3000/", "HSid");
+  getCookies("http://hack-source.herokuapp.com", "HSid");
   getCurrentTabUrl(function(url) {
       $.get(url, function(data) {
           //Get metadata from current tab
@@ -67,6 +67,5 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('titleInput').value = title;
       });
     });
-  //Post data when submit is clicked
   $("#submit").click(onSubmit);
 });

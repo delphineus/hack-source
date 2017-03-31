@@ -8,7 +8,6 @@ angular.module('hackSource.user', ['ngCookies'])
     if ($window.location.pathname === '/') {
       User.checkLoggedIn().then(function(response) {
         $scope.userData = response.user;
-        console.log('Scope Data user.js -------->', $scope.userData);
         //Save cookie with userID for chrome extension:
         $cookies.put('HSid', $scope.userData.id);
         $scope.isNoUser = response.isNoUser;
