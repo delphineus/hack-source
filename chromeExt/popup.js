@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //Production
   // getCookies("http://hack-source.herokuapp.com", "HSid");
   //Development
-  getCookies("http://hack-source.herokuapp.com/api/resources", "HSid");
+  getCookies("http://hack-source.herokuapp.com", "HSid");
   getCurrentTabUrl(function(url) {
       $.get(url, function(data) {
           //Get metadata from current tab
