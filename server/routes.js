@@ -7,6 +7,8 @@ router.put('/resource-view', resourceController.addView);
 router.post('/opengraph', resourceController.getOpenGraph);
 
 router.post('/likes', resourceController.postLike);
+router.post('/dislikes', resourceController.postDislike);
+
 router.get('/bookmarks', resourceController.getBookmarks);
 router.get('/categories', resourceController.getCategories);
 router.get('/tags', resourceController.getTags);
