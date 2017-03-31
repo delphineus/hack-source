@@ -12,7 +12,7 @@
   "permissions": [
     "activeTab",
     "cookies",
-    "http://hack-source.herokuapp.com/",
+    "http://hack-source.herokuapp.com/*",
     "http://127.0.0.1:3000/"
   ]
 }
