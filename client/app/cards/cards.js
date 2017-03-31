@@ -4,7 +4,8 @@ angular.module('hackSource.cards', ['infinite-scroll', '720kb.socialshare'])
   Data.getAllResources()
     .then(function(data) {
       $scope.allData = data; //$scope.data
-      $scope.data = data.slice(0, 4);
+      $scope.data = data.slice(-2);
+      console.log(data.slice(-2))
     });
 
   $scope.addView = function(id) {
@@ -15,8 +16,9 @@ angular.module('hackSource.cards', ['infinite-scroll', '720kb.socialshare'])
     if ($scope.data === undefined) {
       return ;
     }
-    var last = $scope.data.length;
-    for (var i = last; i < last + 4; i++) {
+    var last = $scope.allData.length - $scope.data.length - 1;
+
+    for (var i = last; i >= 0; i--) {
       $scope.data.push($scope.allData[i]);
     }
   };
