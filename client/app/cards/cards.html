@@ -1,9 +1,9 @@
-<div ng-controller='cardsCtrl'>
+<div ng-controller='cardsCtrl'><!-- //orderBy:sortType:sortReverse |  -->
 <div infinite-scroll="loadMore()">
     <md-card class="card-wrapper"
       md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
       md-theme-watch
-      ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:search.category | filterByTag:search.tag | filter:searchText'>
+      ng-repeat='resource in data | filterByCat:search.category | filterByTag:search.tag | filter:searchText'>
 
 
 
