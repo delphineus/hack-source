@@ -12,13 +12,18 @@ angular.module('hackSource', [
   'hackSource.user',
   'infinite-scroll',
   '720kb.socialshare',
-  'ngRoute'
+  'ngRoute',
+  'hackSource.admin'
   ])
 .config(function($routeProvider) {
   $routeProvider
   .when('/', {
     controller: 'cardListCtrl',
     templateUrl: 'app/cardList/cardList.html'
+  })
+  .when('/admin', {
+    controller: 'adminCtrl',
+    templateUrl: 'app/admin/admin.html'
   })
   .otherwise({
     redirectTo: '/'
