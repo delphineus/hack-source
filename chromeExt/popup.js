@@ -34,7 +34,7 @@ function onSubmit() {
     resourceData.tags = tags;
   }
   console.log('Resource Data: ', resourceData);
-  $.post('http://localhost:3000/api/resources', resourceData);
+  $.post('http://hack-source.herokuapp.com/api/resources', resourceData);
 };
 
 function getCookies(domain, name)
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //Production
   // getCookies("http://hack-source.herokuapp.com", "HSid");
   //Development
-  getCookies("http://127.0.0.1:3000/", "HSid");
+  getCookies("http://hack-source.herokuapp.com/api/resources", "HSid");
   getCurrentTabUrl(function(url) {
       $.get(url, function(data) {
           //Get metadata from current tab
