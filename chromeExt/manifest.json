@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "HackSource Resource Creator",
-  "description": "This extension shows a Google Image search result for the current page",
-  "version": "2.0",
+  "description": "This extension allows users to add a resource to HackSource from any tab",
+  "version": "6.0",
 
   "browser_action": {
     "default_icon": "icon.png",
