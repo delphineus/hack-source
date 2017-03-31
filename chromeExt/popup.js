@@ -43,8 +43,9 @@ function getCookies(domain, name)
       if (cookie) {
         ID = cookie.value;
         resourceData.UserId = ID;
+        $("#loginHelp").hide();
       } else {
-        console.log('Sorry, no cookie.');
+        $("#loginHelp").show();
       }
     });
   }

@@ -38,3 +38,18 @@ h3 {
 #tagsHelp {
   margin-left: 2px;
 }
+
+#loginHelp {
+  margin-top: 3px;
+  padding-top: 6px;
+  position: absolute;
+  font-weight:  700;
+}
+
+#loginHelp a {
+  color: rgb(63,81,181);
+}
+#loginHelp a:hover {
+  color: rgb(255,138,101);
+  text-decoration: none;
+}
