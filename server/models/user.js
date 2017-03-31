@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         User.hasMany(models.Resource);
         User.hasMany(models.Like);
+        User.hasMany(models.Dislike);
         User.hasMany(models.Bookmark);
       }
     }

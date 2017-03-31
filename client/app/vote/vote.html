@@ -7,3 +7,15 @@
 {{vote}}
 <!-- Vote: {{resource.Likes.length}} -->
 </md-button>
+<md-button
+  ng-click="downVote()"
+  ng-disabled="flagVariable"
+  class="md-raised"
+>
+<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+{{dvote}}
+<!-- Vote: {{resource.Likes.length}} -->
+</md-button>
+
+<md-slider aria-label="Goodness" ng-disabled="true" md-discrete ng-model="positivityPercentage" step="1" min="0" max="10">
+</md-slider>
