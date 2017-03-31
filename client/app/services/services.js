@@ -36,6 +36,16 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var getAllUsers = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/users'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
   // GET popular Tags
   var getPopularTags = function () {
     return $http({
@@ -99,6 +109,7 @@ angular.module('hackSource.services', [])
     getAllCategories: getAllCategories,
     getAllTags: getAllTags,
     getPopularTags: getPopularTags,
+    getAllUsers: getAllUsers,
     getMetaDataFor: getMetaDataFor,
     postResource: postResource,
     addView: addView,

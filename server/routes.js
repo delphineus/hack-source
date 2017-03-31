@@ -14,6 +14,7 @@ router.get('/bookmarks', resourceController.getBookmarks);
 router.get('/categories', resourceController.getCategories);
 router.get('/tags', resourceController.getTags);
 router.post('/tags', resourceController.postTag);
+router.get('/users', resourceController.getUsers);
 router.get('/most-popular-tags', resourceController.getMostPopularTags);
 
 

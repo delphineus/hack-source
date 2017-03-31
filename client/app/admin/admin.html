@@ -1,2 +1,7 @@
 <div ng-controller='adminCtrl'>
+  <md-list flex-gt-sm="50" id="admin-user-list">
+    <md-list-item ng-repeat="user in users">
+      {{user.username}} | Account Rank: {{user.accountRank}}
+    </md-list-item>
+  </md-list>
 </div>

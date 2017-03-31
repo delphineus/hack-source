@@ -169,6 +169,17 @@ module.exports = {
     });
   },
 
+  getUsers: function(req, res) {
+    User.findAll()
+    .then(function(users) {
+      res.send(users);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
+    });
+  },
+
   getMostPopularTags: function(req, res) {
     ResourceTag.findAll()
     .then(function(resourceTags) {
