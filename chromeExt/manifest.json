@@ -18,7 +18,7 @@
     "activeTab",
     "cookies",
     // TODO - Replace with our deployed link
-    "*://*.glacial-inlet-40419.herokuapp.com/",
-    "http://localhost/*"
+    "http://hack-source.herokuapp.com/",
+    "http://127.0.0.1:3000/"
   ]
 }

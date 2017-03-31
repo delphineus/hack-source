@@ -15,11 +15,11 @@ function getCurrentTabUrl(callback) {
 
 var resourceData = {
   url: '',
-  tags: ['default'],
+  tags: [],
   title: '',
   imgUrl: '',
   summary: '',
-  UserId: 14,
+  UserId: '',
   category: ''
 };
 
@@ -30,6 +30,7 @@ function onSubmit() {
   // resource.userId =
   resourceData.category = document.getElementById('categoryInput').value;
   var tags = document.getElementById('tagsInput').value;
+  tags = tags.split(' ');
   if (tags.length > 0) {
     resourceData.tags = tags;
   }
@@ -37,7 +38,23 @@ function onSubmit() {
   $.post('http://localhost:3000/api/resources', resourceData);
 };
 
+function getCookies(domain, name)
+  {
+    chrome.cookies.get({"url": domain, "name": name}, function(cookie) {
+      if (cookie) {
+        ID = cookie.value;
+        resourceData.UserId = ID;
+      } else {
+        console.log('Sorry, no cookie.');
+      }
+    });
+  }
+
 document.addEventListener('DOMContentLoaded', function() {
+  //Production
+  // getCookies("http://hack-source.herokuapp.com", "HSid");
+  //Development
+  getCookies("http://127.0.0.1:3000/", "HSid");
   getCurrentTabUrl(function(url) {
       $.get(url, function(data) {
           //Get metadata from current tab
