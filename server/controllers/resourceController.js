@@ -2,6 +2,7 @@ var openGraph = require('open-graph');
 var Resource = require('../models').Resource;
 var User = require('../models').User;
 var Like = require('../models').Like;
+var Dislike = require('../models').Dislike;
 var Bookmark = require('../models').Bookmark;
 var Category = require('../models').Category;
 var Tag = require('../models').Tag;
@@ -14,6 +15,7 @@ module.exports = {
       include: [
         { model: User },
         { model: Like },
+        { model: Dislike },
         { model: Bookmark },
         { model: Category },
         { model: Tag }
@@ -95,6 +97,16 @@ module.exports = {
     });
   },
 
+  deleteResource: function(req, res) {
+    Resource.destroy({where: {id: req.query.id}, limit: 1});
+  },
+
+  addView: function(req, res) {
+    Resource.findById(req.body.id).then(function(resource) {
+      return resource.increment({'views': 1});
+    });
+  },
+
   postLike: function(req, res) {
     Like.create({
       ResourceId: req.body.resourceId,
@@ -102,6 +114,19 @@ module.exports = {
     })
     .then(function(newLike) {
       res.send(newLike);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
+    });
+  },
+  postDislike: function(req, res) {
+    Dislike.create({
+      ResourceId: req.body.resourceId,
+      UserId: req.body.userId
+    })
+    .then(function(newDislike) {
+      res.send(newDislike);
     })
     .catch(function(err) {
       res.send(err);
@@ -137,6 +162,17 @@ module.exports = {
     })
     .then(function(tag) {
       res.send(tag);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
+    });
+  },
+
+  getUsers: function(req, res) {
+    User.findAll()
+    .then(function(users) {
+      res.send(users);
     })
     .catch(function(err) {
       res.send(err);
@@ -185,6 +221,12 @@ module.exports = {
     .catch(function(err) {
       res.send(err);
       console.error(err);
+    });
+  },
+
+  changeAccountRank: function(req, res) {
+    User.findById(req.body.id).then(function(user) {
+      return user.update({'accountRank': req.body.accountRank});
     });
   }
 };

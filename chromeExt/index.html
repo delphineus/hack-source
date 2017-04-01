@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Share This Resource</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css"/>
+  <link href="./lib/bower_components/font-awesome/css/font-awesome.min.css"></link>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet">
+  <script src="popup.js"></script>
+  <script src="./lib/bower_components/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+
+  <form>
+    <div class="title">
+    <h3>Share This Resource</h3>
+    </div>
+
+    <div class="form-group">
+      <label for="urlInput" class="col-2 col-form-label">URL</label>
+      <div class="col-10">
+        <input class="form-control" type="url" id="urlInput">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="titleInput">Title</label>
+      <textarea class="form-control" id="titleInput" rows="1"></textarea>
+    </div>
+    <div class="form-group">
+
+    <div class="form-group">
+      <label for="summaryInput">Summary</label>
+      <textarea class="form-control" id="summaryInput" rows="4"></textarea>
+    </div>
+    <div class="form-group">
+
+    <div class="form-group">
+      <label for="categoryInput">Category</label>
+      <select class="form-control" id="categoryInput">
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="tagsInput">Tags</label>
+      <small id="tagsHelp" class="form-text text-muted">(separate mulitple tags by spaces)</small>
+      <textarea class="form-control" id="tagsInput" rows="1"></textarea>
+    </div>
+    <div class="form-group">
+
+    <button type="submit" class="btn btn-primary" id="submit">SUBMIT</button>
+    <small id="loginHelp" class="form-text text-muted">Login to <a target="_blank" href="http://hack-source.herokuapp.com/">HackSource</a> to add a resource.</small>
+  </form>
+  </div>
+</body>
+</html>
+
+

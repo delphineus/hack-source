@@ -1,0 +1,17 @@
+<div ng-controller='adminCtrl'>
+  <md-list flex-gt-sm="50" id="admin-user-list">
+    <md-list-item ng-repeat="user in users">
+      <div>
+      <img class="card-avatar" src="{{user.avatarUrl}}">
+      @{{user.username}} | Account Rank: {{user.accountRank}}
+      <md-button
+        class="md-raised md-primary"
+        ng-disabled="USER.accountRank !== 2 || user.accountRank === 2"
+        ng-click="changeAccountRank(user); user.accountRank = +(!user.accountRank);" >
+      Toggle Mod
+      </md-button>
+      </div>
+      <md-divider></md-divider>
+    </md-list-item>
+  </md-list>
+</div>

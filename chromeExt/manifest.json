@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "HackSource Resource Creator",
+  "description": "This extension allows users to add a resource to HackSource from any tab",
+  "version": "6.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "activeTab",
+    "cookies",
+    "http://hack-source.herokuapp.com/*",
+    "http://127.0.0.1:3000/"
+  ]
+}

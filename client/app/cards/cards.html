@@ -1,13 +1,59 @@
-<div ng-controller='cardsCtrl'>
-  <md-card class="card-wrapper"
-    md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
-    md-theme-watch
-    ng-repeat='resource in data | orderBy:sortType:sortReverse | filterByCat:search.category | filterByTag:search.tag | filterBySearch:search.bar'>
+<div ng-controller='cardsCtrl'><!-- //orderBy:sortType:sortReverse |  -->
+<div infinite-scroll="loadMore()">
+    <md-card class="card-wrapper"
+    ng-mouseenter="displaySosh=true" ng-mouseleave="displaySosh=false"
+      md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
+      md-theme-watch
+      ng-repeat='resource in data | filterByCat:search.category | filterByTag:search.tag | filter:searchText'>
+
+
+
+
+
+    <i ng-if="user.accountRank === 1 || user.accountRank === 2" ng-click="deleteResource(resource.id, resource.title)" class="fa fa-times pull-right" aria-hidden="true"></i>
+    <h2 class="card-title">{{resource.title}}</h2>
     <div class="card-image" ng-style="{'background-image': 'url({{resource.imgUrl}})'}"></div>
     <div class="card-content">
       <p><span class="card-category">{{resource.Categories[0].title}}</span></p>
-      <h2>{{resource.title}}</h2>
+      <!-- <h2>{{resource.title}}</h2> -->
       <p>{{resource.summary}}</p>
+
+
+
+
+      <div class="card-sbar" layout='row' layout-xs="column" ng-show="displaySosh">
+      <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="facebook"
+     socialshare-url={{resource.url}}> <i  class="fa fa-facebook"></i>
+
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="twitter"
+     socialshare-url={{resource.url}}> <i class="fa fa-twitter"></i>
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="linkedin"
+     socialshare-url={{resource.url}}> <i class="fa fa-linkedin"></i>
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="tumblr"
+     socialshare-url={{resource.url}}> <i class="fa fa-tumblr"></i>
+     </div>
+     <div href="#"
+      class="socialbtn"
+     socialshare
+     socialshare-provider="weibo"
+     socialshare-url={{resource.url}}> <i class="fa fa-weibo"></i>
+     </div>
+    </div>
     </div>
     <md-divider></md-divider>
     <md-card-footer
@@ -20,15 +66,25 @@
       </div>
       <div layout-align="end center">
         <md-button
+          ng-mousedown="addView(resource.id)"
           ng-href="{{resource.url}}"
           title="{{resource.title}}"
           target="_blank"
           aria-label="{{resource.title}}"
-          class="md-raised md-primary">
-          View Resource
+          class="md-raised md-primary"
+        >
+        View Resource
+        </md-button>
+        <md-button
+          ng-disabled="true"
+          class="md-raised md-primary"
+        >
+        <i class="fa fa-eye" aria-hidden="true"></i>
+        {{resource.views}}
         </md-button>
         <my-vote></my-vote>
       </div>
     </md-card-footer>
   </md-card>
+  </div>
 </div>

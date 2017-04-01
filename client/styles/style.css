@@ -24,16 +24,30 @@ md-card.card-wrapper.ng-scope._md.md-default-theme {
   float: left;
   width: 250px;
   height: 200px;
+  margin-left: 7px;
+    margin-right: 7px;
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
+.card-title {
+  margin-left: 7px;
+
+}
+
 
 .card-content {
-  display: inline-block;
-  margin-left: 20px;
-  width: 70%;
+/*  display: inline-block;
+*/  margin-left: 20px;
+  width: auto;
   height: 200px;
+}
+.card-sbar {
+/*  display: inline-block;
+*/  margin-left: 20px;
+  width: auto;
+  /*height: 200px;*/
 }
 
 .card-category {
@@ -91,3 +105,10 @@ md-sidenav button.md-button {
 @media only screen and (max-width: 1024px) {
 
 }
+.socialbtn {
+  background-color: #F9FCFE;
+  padding: 10px;
+  margin: 6px;
+  min-width: 15px;
+}
+

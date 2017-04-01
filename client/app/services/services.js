@@ -36,6 +36,16 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var getAllUsers = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/users'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
   // GET popular Tags
   var getPopularTags = function () {
     return $http({
@@ -68,6 +78,21 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var deleteResource = function(data) {
+    $http({
+      method: 'DELETE',
+      url: '/api/resources?id=' + data.id
+    });
+  };
+
+  var addView = function(data) {
+    $http({
+      method: 'PUT',
+      url: '/api/resource-view',
+      data: JSON.stringify(data)
+    });
+  };
+
   var postTags = function(tags) {
     if (!tags) { return; }
     tags.forEach((tag) => {
@@ -79,14 +104,26 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var changeAccountRank = function(data) {
+    $http({
+      method: 'PUT',
+      url: '/api/user-account-rank',
+      data: JSON.stringify(data)
+    });
+  };
+
   return {
     getAllResources: getAllResources,
     getAllCategories: getAllCategories,
     getAllTags: getAllTags,
     getPopularTags: getPopularTags,
+    getAllUsers: getAllUsers,
     getMetaDataFor: getMetaDataFor,
     postResource: postResource,
-    postTags: postTags
+    addView: addView,
+    postTags: postTags,
+    deleteResource: deleteResource,
+    changeAccountRank: changeAccountRank
   };
 })
 
@@ -155,32 +192,6 @@ angular.module('hackSource.services', [])
       });
 
       if (itemTags.indexOf(searchTag) !== -1) {
-        filtered.push(item);
-      }
-    }
-    return filtered;
-  };
-})
-.filter('filterBySearch', function () {
-  return function (items, searchBar) {
-    var filtered = [];
-
-    if (!searchBar) {
-      return items;
-    }
-
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      var itemSearch = [];
-
-      item.Tags.forEach(function(tag) {
-        itemSearch.push(tag.title);
-      });
-      item.Categories.forEach(function(cat) {
-        itemSearch.push(cat.title);
-      });
-
-      if (itemSearch.indexOf(searchBar) !== -1) {
         filtered.push(item);
       }
     }
