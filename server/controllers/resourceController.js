@@ -97,6 +97,10 @@ module.exports = {
     });
   },
 
+  deleteResource: function(req, res) {
+    Resource.destroy({where: {id: req.query.id}, limit: 1});
+  },
+
   addView: function(req, res) {
     Resource.findById(req.body.id).then(function(resource) {
       return resource.increment({'views': 1});
@@ -165,6 +169,17 @@ module.exports = {
     });
   },
 
+  getUsers: function(req, res) {
+    User.findAll()
+    .then(function(users) {
+      res.send(users);
+    })
+    .catch(function(err) {
+      res.send(err);
+      console.error(err);
+    });
+  },
+
   getMostPopularTags: function(req, res) {
     ResourceTag.findAll()
     .then(function(resourceTags) {
@@ -206,6 +221,12 @@ module.exports = {
     .catch(function(err) {
       res.send(err);
       console.error(err);
+    });
+  },
+
+  changeAccountRank: function(req, res) {
+    User.findById(req.body.id).then(function(user) {
+      return user.update({'accountRank': req.body.accountRank});
     });
   }
 };

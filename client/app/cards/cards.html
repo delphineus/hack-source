@@ -9,11 +9,10 @@
 
 
 
-      <h2 class="card-title">{{resource.title}}</h2>
+    <i ng-if="user.accountRank === 1 || user.accountRank === 2" ng-click="deleteResource(resource.id, resource.title)" class="fa fa-times pull-right" aria-hidden="true"></i>
+    <h2 class="card-title">{{resource.title}}</h2>
     <div class="card-image" ng-style="{'background-image': 'url({{resource.imgUrl}})'}"></div>
     <div class="card-content">
-
-
       <p><span class="card-category">{{resource.Categories[0].title}}</span></p>
       <!-- <h2>{{resource.title}}</h2> -->
       <p>{{resource.summary}}</p>
@@ -62,7 +61,7 @@
       </div>
       <div layout-align="end center">
         <md-button
-          ng-click="addView(resource.id)"
+          ng-mousedown="addView(resource.id)"
           ng-href="{{resource.url}}"
           title="{{resource.title}}"
           target="_blank"

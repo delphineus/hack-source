@@ -19,11 +19,4 @@ angular.module('hackSource.cardList', [])
     $scope.search.bar = search;
   };
 
-})
-.directive('myCardList', function() {
-  return {
-    restrict: 'E',
-    templateUrl: 'app/cardList/cardList.html',
-    replace: true
-  };
 });

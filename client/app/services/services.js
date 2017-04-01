@@ -36,6 +36,16 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var getAllUsers = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/users'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
   // GET popular Tags
   var getPopularTags = function () {
     return $http({
@@ -68,6 +78,13 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var deleteResource = function(data) {
+    $http({
+      method: 'DELETE',
+      url: '/api/resources?id=' + data.id
+    });
+  };
+
   var addView = function(data) {
     $http({
       method: 'PUT',
@@ -87,15 +104,26 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var changeAccountRank = function(data) {
+    $http({
+      method: 'PUT',
+      url: '/api/user-account-rank',
+      data: JSON.stringify(data)
+    });
+  };
+
   return {
     getAllResources: getAllResources,
     getAllCategories: getAllCategories,
     getAllTags: getAllTags,
     getPopularTags: getPopularTags,
+    getAllUsers: getAllUsers,
     getMetaDataFor: getMetaDataFor,
     postResource: postResource,
     addView: addView,
-    postTags: postTags
+    postTags: postTags,
+    deleteResource: deleteResource,
+    changeAccountRank: changeAccountRank
   };
 })
 
