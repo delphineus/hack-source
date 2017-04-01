@@ -1,13 +1,4 @@
 <md-button
-  ng-click="upVote()"
-  ng-disabled="flagVariable"
-  class="md-raised"
->
-<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-{{vote}}
-<!-- Vote: {{resource.Likes.length}} -->
-</md-button>
-<md-button
   ng-click="downVote()"
   ng-disabled="flagVariable"
   class="md-raised"
@@ -16,9 +7,18 @@
 {{dvote}}
 <!-- Vote: {{resource.Likes.length}} -->
 </md-button>
+<md-button
+  ng-click="upVote()"
+  ng-disabled="flagVariable"
+  class="md-raised"
+>
+<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+{{vote}}
+<!-- Vote: {{resource.Likes.length}} -->
+</md-button>
 
-<md-slider  md-discrete ng-model="positivityPercentage" aria-label="green" id="green-slider" ng-model="color.green" step="1" min="0" max="10">
+
+<md-slider  md-discrete ng-model="positivityPercentage" aria-label="green" id="green-slider" ng-disabled="true" ng-model="color.green" step="1" min="0" max="10">
 </md-slider>
-<rzslider rz-slider-model="slider.value"
-          rz-slider-options="slider.options"></rzslider>
+
 
