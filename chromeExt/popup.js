@@ -50,9 +50,14 @@ function getCookies(domain, name)
   }
 
 document.addEventListener('DOMContentLoaded', function() {
-  //Production
-  // getCookies("http://hack-source.herokuapp.com", "HSid");
-  //Development
+  $.get('http://hack-source.herokuapp.com/api/categories', function(res) {
+    res.forEach(function(category) {
+      $('#categoryInput').append($('<option/>', {
+              value: category.title,
+              text : category.title
+          }));
+    })
+  });
   getCookies("http://hack-source.herokuapp.com", "HSid");
   getCurrentTabUrl(function(url) {
       $.get(url, function(data) {

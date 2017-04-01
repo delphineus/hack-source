@@ -15,5 +15,14 @@
   },
   "production": {
     "use_env_variable": "DATABASE_URL"
-  }
+  },
+  "db": {
+     "url": "postgres://gaebuhyyardapg:0e62c50ebba3879b0d2cec802dcdcfecb136d71cfe4bbe9cc33639f3fdc1f47a@ec2-23-21-184-181.compute-1.amazonaws.com:5432/dedh1el9dtvr92",
+     "dialect": "postgres",
+     "dialectOptions": {
+       "ssl": {
+         "require": true
+       }
+     }
+   }
 }
