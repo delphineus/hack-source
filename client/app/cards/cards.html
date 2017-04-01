@@ -1,6 +1,7 @@
 <div ng-controller='cardsCtrl'><!-- //orderBy:sortType:sortReverse |  -->
 <div infinite-scroll="loadMore()">
     <md-card class="card-wrapper"
+    ng-mouseenter="displaySosh=true" ng-mouseleave="displaySosh=false"
       md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
       md-theme-watch
       ng-repeat='resource in data | filterByCat:search.category | filterByTag:search.tag | filter:searchText'>
@@ -16,7 +17,11 @@
       <p><span class="card-category">{{resource.Categories[0].title}}</span></p>
       <!-- <h2>{{resource.title}}</h2> -->
       <p>{{resource.summary}}</p>
-      <div class="card-sbar" layout='row' layout-xs="column">
+
+
+
+
+      <div class="card-sbar" layout='row' layout-xs="column" ng-show="displaySosh">
       <div href="#"
       class="socialbtn"
      socialshare
