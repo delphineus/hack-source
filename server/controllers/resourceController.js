@@ -222,5 +222,11 @@ module.exports = {
       res.send(err);
       console.error(err);
     });
+  },
+
+  changeAccountRank: function(req, res) {
+    User.findById(req.body.id).then(function(user) {
+      return user.update({'accountRank': req.body.accountRank});
+    });
   }
 };

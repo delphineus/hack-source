@@ -104,6 +104,14 @@ angular.module('hackSource.services', [])
     });
   };
 
+  var changeAccountRank = function(data) {
+    $http({
+      method: 'PUT',
+      url: '/api/user-account-rank',
+      data: JSON.stringify(data)
+    });
+  };
+
   return {
     getAllResources: getAllResources,
     getAllCategories: getAllCategories,
@@ -114,7 +122,8 @@ angular.module('hackSource.services', [])
     postResource: postResource,
     addView: addView,
     postTags: postTags,
-    deleteResource: deleteResource
+    deleteResource: deleteResource,
+    changeAccountRank: changeAccountRank
   };
 })
 

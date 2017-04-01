@@ -16,6 +16,7 @@ router.get('/tags', resourceController.getTags);
 router.post('/tags', resourceController.postTag);
 router.get('/users', resourceController.getUsers);
 router.get('/most-popular-tags', resourceController.getMostPopularTags);
+router.put('/user-account-rank', resourceController.changeAccountRank);
 
 
 module.exports = router;
