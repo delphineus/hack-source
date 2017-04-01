@@ -3,9 +3,8 @@ angular.module('hackSource.cards', ['infinite-scroll', '720kb.socialshare'])
 
   Data.getAllResources()
     .then(function(data) {
-      $scope.allData = data; //$scope.data
-      $scope.data = data.slice(-2);
-      console.log(data.slice(-2))
+      $scope.allData = data.reverse(); //$scope.data
+      $scope.data = $scope.allData.slice(0, 2);
     });
 
   User.checkLoggedIn().then(function(result) {
@@ -20,9 +19,10 @@ angular.module('hackSource.cards', ['infinite-scroll', '720kb.socialshare'])
     if ($scope.data === undefined) {
       return ;
     }
-    var last = $scope.allData.length - $scope.data.length - 1;
+    var last =  $scope.data.length;
+   var newCards = [];
 
-    for (var i = last; i >= 0; i--) {
+    for (var i = last; i < $scope.allData.length; i++) {
       $scope.data.push($scope.allData[i]);
     }
   };
