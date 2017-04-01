@@ -17,5 +17,8 @@
 <!-- Vote: {{resource.Likes.length}} -->
 </md-button>
 
-<md-slider aria-label="Goodness" ng-disabled="true" md-discrete ng-model="positivityPercentage" step="1" min="0" max="10">
+<md-slider  md-discrete ng-model="positivityPercentage" aria-label="green" id="green-slider" ng-model="color.green" step="1" min="0" max="10">
 </md-slider>
+<rzslider rz-slider-model="slider.value"
+          rz-slider-options="slider.options"></rzslider>
+

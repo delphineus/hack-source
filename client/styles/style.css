@@ -106,6 +106,7 @@ md-sidenav button.md-button {
 
 }
 .socialbtn {
+  display:none;
   background-color: #F9FCFE;
   padding: 10px;
   margin: 6px;
