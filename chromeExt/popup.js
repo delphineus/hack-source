@@ -19,7 +19,7 @@ var resourceData = {
   title: '',
   imgUrl: '',
   summary: '',
-  UserId: '',
+  UserId: null,
   category: ''
 };
 
@@ -34,6 +34,12 @@ function onSubmit() {
     resourceData.tags = tags;
   }
   $.post('http://hack-source.herokuapp.com/api/resources', resourceData);
+  $('.form-group').fadeOut(600);
+  $('#submit').fadeOut(600);
+  $('.container').animate({height: "120px"}, 800);
+  $('.title').text('Resource submitted!').css({'font-size': '20px', 'padding-top': '5px'});
+  $('.container').append('<h5 class="form-text text-muted">Visit <a target="_blank" href="http://hack-source.herokuapp.com/">HackSource</a> to see your resources.</h5>');
+  $('h5').css({'font-size': '15px', 'font-weight': '600', 'text-align': 'center'});
 };
 
 function getCookies(domain, name)
@@ -42,8 +48,12 @@ function getCookies(domain, name)
       if (cookie) {
         ID = cookie.value;
         resourceData.UserId = ID;
+        $(".form-control").prop('disabled', false);
+        $("#submit").show();
         $("#loginHelp").hide();
       } else {
+        $(".form-control").prop('disabled', true);
+        $("#submit").hide();
         $("#loginHelp").show();
       }
     });
@@ -58,7 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
           }));
     })
   });
+
   getCookies("http://hack-source.herokuapp.com", "HSid");
+
   getCurrentTabUrl(function(url) {
       $.get(url, function(data) {
           //Get metadata from current tab
@@ -71,5 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('titleInput').value = title;
       });
     });
-  $("#submit").click(onSubmit);
+
+  $("#submit").click(function(event) {
+    onSubmit();
+    event.preventDefault();
+  });
+
 });
